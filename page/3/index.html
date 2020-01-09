@@ -139,32 +139,36 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-a_context_ways" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-book_binary_system" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/30/a_context_ways/">getApplication()、getApplicationContext()区别</a>
+      <a class="article-title" href="/2018/12/25/book_binary_system/">读书笔记 - 二进制</a>
     </h1>
   
 
         
-        <a href="/2017/03/30/a_context_ways/" class="archive-article-date">
-  	<time datetime="2017-03-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
+        <a href="/2018/12/25/book_binary_system/" class="archive-article-date">
+  	<time datetime="2018-12-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>getApplication()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在 Activity 或者Service中使用Application实例</span><br></pre></td></tr></table></figure>
-<p>getApplicationContext()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">其他场景中使用 BroadcastReceiver等获取Application的实例；</span><br></pre></td></tr></table></figure>
-<p>getBaseContext()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ContextImpl对象，上下文对象实现类</span><br></pre></td></tr></table></figure>
+        <p>1.什么是二进制</p>
+<p>十进制计数使用10作为基数，二进制使用2作为基数，二进制的位数就是2^n的形式。</p>
+<p>2.计算机为什么使用二进制？</p>
+<p>具有抗干扰性，可靠性高的优点；二进制非常适合逻辑运算。</p>
+<p>3.二进制的位操作</p>
+<p>二进制的左移一位，就是数字翻倍，右移一位，就是将数字除以2并取整数商。</p>
+<p>4.逻辑操作</p>
+<p>“或”：参与操作的位中只要有一个是1，最终结果就是1；</p>
+<p>“与”：参与操作的的位必须全是1，最终结果就是1，否则就为0；</p>
+<p>“异或”：参与操作的位相同，最终结果为0，否则为1；</p>
 
       
 
@@ -178,7 +182,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">程序员的数学基础课</a>
         		</li>
       		
 		</ul>
@@ -188,7 +192,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/30/a_context_ways/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/12/25/book_binary_system/">展开全文 >></a>
         </p>
       
 
@@ -218,20 +222,724 @@
 
 
   
-    <article id="post-android_ipc_ways" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-other_linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/20/android_ipc_ways/">Android IPC 跨进城通信的几种方式</a>
+      <a class="article-title" href="/2018/12/25/other_linux/">关于 kcp 协议 操作流程</a>
     </h1>
   
 
         
-        <a href="/2017/03/20/android_ipc_ways/" class="archive-article-date">
-  	<time datetime="2017-03-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-20</time>
+        <a href="/2018/12/25/other_linux/" class="archive-article-date">
+  	<time datetime="2018-12-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.打开  <a href="https://github.com/xtaci/kcptun/releases" target="_blank" rel="noopener">https://github.com/xtaci/kcptun/releases</a>  </p>
+<p>2.下载 kcptun-linux-amd64-20181224.tar.gz</p>
+<p>3.拷贝本地文件到服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P 26765 本地文件地址 root@服务器地址:/root/</span><br></pre></td></tr></table></figure>
+<p>4.解压文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xzvf kcptun-linux-amd64-20171021.tar.gz</span><br></pre></td></tr></table></figure>
+<p>5.编辑文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi start_kcp.sh</span><br><span class="line"></span><br><span class="line">复制</span><br><span class="line"></span><br><span class="line">#!/bin/bash</span><br><span class="line">/root/server_linux_amd64 -l :20086 -t 自己的ip:443 -crypt aes-128 -key yq -mtu 1400 -sndwnd 1024 -rcvwnd 1024 -mode fast2 &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p>5.权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x start_kcp.sh</span><br></pre></td></tr></table></figure>
+<p>6.执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start_kcp.sh</span><br></pre></td></tr></table></figure>
+<p>7.手机插件 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-crypt aes-128 -key yq -mtu 1400 -sndwnd 1024 -rcvwnd 1024 -mode fast2</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/25/other_linux/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-book_ block_way" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/13/book_ block_way/">读书笔记 - Android 卡顿分析方法与工具汇总</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/13/book_ block_way/" class="archive-article-date">
+  	<time datetime="2018-12-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>cpu 、内存 、磁盘 io</p>
+<p>cpu 时间 分为 用户时间和系统时间</p>
+<p>查看某个进程cpu 使用情况</p>
+<h3 id="cpu-使用率"><a href="#cpu-使用率" class="headerlink" title="cpu 使用率"></a>cpu 使用率</h3><p>60%以上表示处于繁忙 不会长期30%</p>
+<p>top 命令 查看哪个进程cpu 消耗大户</p>
+<p>vmstat 命令动态监视操作系统的虚拟内存和cpu活动 </p>
+<p>strace 命令 可以跟踪某个进程中的所有系统调用</p>
+<h3 id="cpu-饱和度"><a href="#cpu-饱和度" class="headerlink" title="cpu 饱和度"></a>cpu 饱和度</h3><p>线程排队等待cpu的情况，cpu负载情况；</p>
+<h3 id="Android-卡顿工具排查工具"><a href="#Android-卡顿工具排查工具" class="headerlink" title="Android 卡顿工具排查工具"></a>Android 卡顿工具排查工具</h3><p>两个流派</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.instrument流派，获取一段时间内所有函数的调用过程，可以通过分析这段时间内的函数调</span><br><span class="line">用工程，再进一步分析待优化的点；</span><br><span class="line"></span><br><span class="line">2.sample 流派，有选择性或者采用抽样方式观察某些函数的调用过程，可以通过这些有限的信</span><br><span class="line">息推测出可疑点，在做细化分析；</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>原理</th>
+<th>优缺点</th>
+<th>流派</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Traceview</td>
+<td>Android Runtime函数调用的enent事件，将函数运行的耗时和调用关系写入 trace 文件中</td>
+<td>开销过大 5.0后 使用基本样式进行分析</td>
+<td>instrument</td>
+</tr>
+<tr>
+<td>Nanoscope</td>
+<td>直接修改 Android虚拟机源码，在ArtMethod 执行入口和执行结束为止增加埋点代码，将信息先写入内存，在统一生成结果文件</td>
+<td>需要ROM,只支持 6p ,默认只支持主线程采集</td>
+<td>instrument</td>
+</tr>
+<tr>
+<td>systrace</td>
+<td>4.1版本新增的性能分析工具，通常跟踪系统 io操作，cpu负载，suface渲染，gc等事件，利用 Linux的ftrace 调试工具，在系统关键位置添加性能监控埋点</td>
+<td>开销低，不支持应用程序代码的耗时分析</td>
+<td>sample</td>
+</tr>
+<tr>
+<td>Simpleperf</td>
+<td>5.0 新增，利用cpu的性能监控单元pum提供的硬件perf事件，可以看到所有代码的耗时，同时封装了systrace的监控功能</td>
+<td>性能开销低</td>
+<td>sample</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Android-Studio-3-2-集成的分析工具"><a href="#Android-Studio-3-2-集成的分析工具" class="headerlink" title="Android Studio 3.2 集成的分析工具"></a>Android Studio 3.2 集成的分析工具</h3><h4 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h4><p>Sample Java Methods</p>
+<p>Trace Java Methods</p>
+<p>Trace System Calls </p>
+<p>SampleNative </p>
+<h4 id="展示方式"><a href="#展示方式" class="headerlink" title="展示方式"></a>展示方式</h4><p>Call Chart</p>
+<p>Flame Chart</p>
+<h3 id="卡顿监控"><a href="#卡顿监控" class="headerlink" title="卡顿监控"></a>卡顿监控</h3><p>1.使用消息队列</p>
+<p>2.插桩</p>
+<p>3.Profilo (Facebook 开源)</p>
+<h3 id="其他监控"><a href="#其他监控" class="headerlink" title="其他监控"></a>其他监控</h3><p>1.帧率</p>
+<p>2.生命周期监控</p>
+<p>3.线程监控</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Android 开发高手课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/13/book_ block_way/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-book_memory" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/11/book_memory/">读书笔记 - 内存优化着手点</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/11/book_memory/" class="archive-article-date">
+  	<time datetime="2018-12-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-设备分级"><a href="#1-设备分级" class="headerlink" title="1.设备分级"></a>1.设备分级</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">设备分级 device-year-class策略对设备分级</span><br><span class="line"></span><br><span class="line">缓存管理</span><br><span class="line"></span><br><span class="line">进程模型</span><br><span class="line"></span><br><span class="line">安装包大小</span><br></pre></td></tr></table></figure>
+<h3 id="2-Bitmap-优化"><a href="#2-Bitmap-优化" class="headerlink" title="2.Bitmap 优化"></a>2.Bitmap 优化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">统一图片库</span><br><span class="line"></span><br><span class="line">统一监控</span><br><span class="line">1.大图片监控</span><br><span class="line"></span><br><span class="line">2.重复图片监控</span><br><span class="line"></span><br><span class="line">3.图片总内存</span><br></pre></td></tr></table></figure>
+<h3 id="3-内存泄漏"><a href="#3-内存泄漏" class="headerlink" title="3.内存泄漏"></a>3.内存泄漏</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Java 内存泄漏</span><br><span class="line"></span><br><span class="line">OOM 监控</span><br><span class="line"></span><br><span class="line">Native 内存泄漏监控</span><br><span class="line"></span><br><span class="line">针对无法重编 so 的情况</span><br><span class="line"></span><br><span class="line">针对可重编的 so 情况</span><br></pre></td></tr></table></figure>
+<p>##内存监控</p>
+<p>1.采集方式</p>
+<p>2.计算指标（内存异常率、触顶率）</p>
+<p>3.GC 监控</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Android 开发高手课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/11/book_memory/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-data_books" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/09/data_books/">算法书籍</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/09/data_books/" class="archive-article-date">
+  	<time datetime="2018-10-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://item.jd.com/12148832.html" target="_blank" rel="noopener">1.算法图解</a></p>
+<p><a href="https://item.jd.com/10663703.html" target="_blank" rel="noopener">2.大话数据结构</a></p>
+<p><a href="https://item.jd.com/12163054.html" target="_blank" rel="noopener">3.剑指Offer</a></p>
+<p><a href="https://item.jd.com/11642529.html" target="_blank" rel="noopener">4.编程珠玑</a></p>
+<p><a href="https://item.jd.com/10066736.html" target="_blank" rel="noopener">5.编程之美</a></p>
+<p><a href="https://item.jd.com/11848569.html" target="_blank" rel="noopener">6.计算机程序设计艺术</a></p>
+<p><a href="https://item.jd.com/11465534.html" target="_blank" rel="noopener">7.算法帝国</a></p>
+<p><a href="https://item.jd.com/11572052.html" target="_blank" rel="noopener">8.数学之美</a></p>
+<p><a href="https://item.jd.com/12337871.html" target="_blank" rel="noopener">9.算法之美</a></p>
+<p><a href="https://item.jd.com/11886254.html" target="_blank" rel="noopener">10.数据结构与算法分析：Java语言描述</a></p>
+<p><a href="https://item.jd.com/11098789.html" target="_blank" rel="noopener">11.算法</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构与算法之美</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/09/data_books/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-a_a_gogo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/27/a_a_gogo/">Android 进阶路线</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/27/a_a_gogo/" class="archive-article-date">
+  	<time datetime="2018-09-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://o91shoppd.bkt.clouddn.com/Android%E8%BF%9B%E9%98%B6%E8%B7%AF%E7%BA%BF1.png" alt></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/27/a_a_gogo/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-data_analyze_pic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/27/data_analyze_pic/">数据结构和算法</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/27/data_analyze_pic/" class="archive-article-date">
+  	<time datetime="2018-09-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://o91shoppd.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95.jpeg" alt></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构与算法之美</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/27/data_analyze_pic/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-data_analyze" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/26/data_analyze/">读书笔记 - 数据结构与算法之美  - 复杂度分析</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/26/data_analyze/" class="archive-article-date">
+  	<time datetime="2018-09-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.什么是复杂度分析？</p>
+<ul>
+<li><p>数据结构和算法解决是“如何让计算机更快时间、更省空间的解决问题”；</p>
+</li>
+<li><p>从执行时间和占用空间两个维度来评估数据结构和算法性能；</p>
+</li>
+<li><p>时间复杂度和空间复杂度。</p>
+</li>
+<li><p>复杂度描述的是算法执行时间和占用空间与数据规模的增长关系；</p>
+</li>
+</ul>
+<p>2.为什么需要复杂度分析？</p>
+<ul>
+<li><p>不依赖环境、成本低、效率高、易操作、指导性强；</p>
+</li>
+<li><p>编写性能更优；</p>
+</li>
+</ul>
+<p>3.大 O 复杂度表示法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">T(n) = O(f(n))</span><br><span class="line"></span><br><span class="line">T(n) 算法执行总时间</span><br><span class="line"></span><br><span class="line">f(n) 表示每行代码执行总次数</span><br><span class="line"></span><br><span class="line">n 往往表示数据规模</span><br></pre></td></tr></table></figure>
+<p>4.常用的复杂度级别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.O(1)	常数阶</span><br><span class="line">2.O(logn)	对数阶</span><br><span class="line">3.O(n)	线性阶</span><br><span class="line">4.O(nlogn) 线性对数阶</span><br><span class="line">5.O(n^2)  平方阶</span><br><span class="line">6.O(n^3)	立方阶</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构与算法之美</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/26/data_analyze/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mini_official_account" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/21/mini_official_account/">小程序快捷关注公众号组件</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/21/mini_official_account/" class="archive-article-date">
+  	<time datetime="2018-09-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.需要 在“设置”-&gt;“接口设置”-&gt;“公众号关注组件”中设置要展示的公众号;</p>
+<p>2.生命周期内需要从 二维码、小程序二维码、聊天顶部、其他小程序返回展示公众号组件；</p>
+<p>3.每个页面只能配置一个组件;</p>
+<p>4.示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;official-account&gt;&lt;/official-account&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/Sl2B4aOmG2OJomHQUCH9tMB6Z93TbQnKoQUyj1tu42kZerGTnkPe3Xx3DMYTNKrFK7XFoqHsmicLDhey3pvibVjQ/640?wx_fmt=png" alt></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">微信小程序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/21/mini_official_account/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-a_app_security" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/10/a_app_security/">Android 应用安全防护等基本策略</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/10/a_app_security/" class="archive-article-date">
+  	<time datetime="2018-09-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-10</time>
 </a>
         
       </header>
@@ -239,17 +947,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>Bundle</p>
+<li>混淆机制</li>
+</ul>
+<p>1.代码混淆</p>
+<p>2.资源混淆</p>
+<ul>
+<li><p>签名保护</p>
 </li>
-<li><p>文件共享</p>
+<li><p>手动注册 native 方法</p>
 </li>
-<li><p>AIDL</p>
-</li>
-<li><p>Messenger</p>
-</li>
-<li><p>Contentprovider</p>
-</li>
-<li><p>Socket</p>
+<li><p>增加应用的反调试功能</p>
 </li>
 </ul>
 
@@ -275,657 +982,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/20/android_ipc_ways/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode_prime" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/22/leetcode_prime/">LeetCode 204. 计数质数</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/22/leetcode_prime/" class="archive-article-date">
-  	<time datetime="2017-02-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">  * 判断小于n的所有正整数是不是素数;</span><br><span class="line">  * */</span><br><span class="line"> public static int countPrimes(int n) &#123;</span><br><span class="line">     if (n == 0) return 0;</span><br><span class="line">     int ans = 0;</span><br><span class="line">     for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">         ans += isPrime(i);</span><br><span class="line">     &#125;</span><br><span class="line">     return ans;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">  * 判断一个数是否是质数;</span><br><span class="line">  *</span><br><span class="line">  * */</span><br><span class="line"> public static int isPrime(int n) &#123;</span><br><span class="line"></span><br><span class="line">     if(n &lt; 2 )&#123;</span><br><span class="line">         return 0;</span><br><span class="line">     &#125;</span><br><span class="line">     for(int i = 2; i * i &lt;= n; i++) &#123;</span><br><span class="line">         if(n % i == 0) &#123;</span><br><span class="line">             return 0;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     return 1;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/22/leetcode_prime/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode_power_of_three" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/20/leetcode_power_of_three/">326. Power of Three</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/20/leetcode_power_of_three/" class="archive-article-date">
-  	<time datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 不停地除以3，看最后的余数是否为1;要注意考虑输入是负数和0的情况;</span><br><span class="line"> * */</span><br><span class="line">public static boolean isPowerOfThree1(int n) &#123;</span><br><span class="line"></span><br><span class="line">    while (n &gt; 0 &amp;&amp; n % 3 == 0) &#123;</span><br><span class="line">        n /= 3;</span><br><span class="line">    &#125;</span><br><span class="line">    return n == 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 任何一个3的x次方一定能被int型里最大的3的x次方整除;</span><br><span class="line"> * */</span><br><span class="line">public static boolean isPowerOfThree2(int n)&#123;</span><br><span class="line"></span><br><span class="line">    return  (n &gt; 0 &amp;&amp; 1162261467 % n == 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *  如果n是3的x次方，那么以3为低对数后一定是一个整数;</span><br><span class="line"> * */</span><br><span class="line">public static boolean isPowerOfThree3(int n) &#123;</span><br><span class="line">    return (n &gt; 0 &amp;&amp; (Math.log10(n) / Math.log10(3)) % 1 == 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/20/leetcode_power_of_three/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HierarchyViewer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/26/HierarchyViewer/">HierarchyViewer 操作说明</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/26/HierarchyViewer/" class="archive-article-date">
-  	<time datetime="2017-01-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1.Save as PNG: 把这个布局的层级另存为png格式</span><br><span class="line"></span><br><span class="line">2.Capture Layers: 把这个布局的层级另存为psd格式</span><br><span class="line"></span><br><span class="line">3.Load View Hierarchy: 重新载入这个view层级图</span><br><span class="line"></span><br><span class="line">4.Evaluate Contrast: 查看层级布局的具体情况</span><br><span class="line"></span><br><span class="line">5.Display View: 在单独的一个窗口中显示所选择的view</span><br><span class="line"></span><br><span class="line">6.Invalidate Layout: 重绘当前窗口</span><br><span class="line"></span><br><span class="line">7.Request Layout: 对当前view进行layout</span><br><span class="line"></span><br><span class="line">8.Dump DisplayList: 使当前view输出它的显示列表到logcat中</span><br><span class="line"></span><br><span class="line">9.Dump Theme: 下载这个view主题的资源</span><br><span class="line"></span><br><span class="line">10.Profile Node: 得到measure，layout，draw的性能指示器</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/26/HierarchyViewer/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ps_bh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/16/ps_bh/">上海薄荷科技技术交流会总结</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/16/ps_bh/" class="archive-article-date">
-  	<time datetime="2016-04-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>一睹大神风采</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2016/04/16/ps_bh/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/16/ps_bh/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android_java_mst" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/15/android_java_mst/">面试总结</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/15/android_java_mst/" class="archive-article-date">
-  	<time datetime="2016-04-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>总结自己的不足，与问题一起成长。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2016/04/15/android_java_mst/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">resource</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/15/android_java_mst/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android_jar_aar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/13/android_jar_aar/">Android Studio  *.jar 与 *.aar 的生成与*.aar导入项目方法总结</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/13/android_jar_aar/" class="archive-article-date">
-  	<time datetime="2016-04-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>介绍 <em>.jar 与 </em>.aar 的区别以及在 As生成 arr 文件。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2016/04/13/android_jar_aar/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/13/android_jar_aar/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android_blog_recommend" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/12/android_blog_recommend/">Android Recommend Blog</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/12/android_blog_recommend/" class="archive-article-date">
-  	<time datetime="2016-04-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>收藏 Blog，绝对是好文，不看会后悔。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2016/04/12/android_blog_recommend/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">resource</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Gson</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">UI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OKHttp</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EventBus</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">RxJava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/12/android_blog_recommend/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android_drawables" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/10/android_drawables/">Drawable 详解</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/10/android_drawables/" class="archive-article-date">
-  	<time datetime="2016-04-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Drawable 系列，常用 BitmapDrawable、 ShapeDrawable、StateListDrawable等。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2016/04/10/android_drawables/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Drawable</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/10/android_drawables/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/09/10/a_app_security/">展开全文 >></a>
         </p>
       
 
@@ -957,7 +1014,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -1221,6 +1278,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Svn</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">kotlin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Rxjava</a>
               </li>
             
             <div class="clearfix"></div>

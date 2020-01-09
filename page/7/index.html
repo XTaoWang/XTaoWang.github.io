@@ -139,377 +139,36 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-tools_markdown_ss" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-android_app_lose_weight" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/30/tools_markdown_ss/">MarkDown 扩展更新</a>
+      <a class="article-title" href="/2016/02/26/android_app_lose_weight/">android app Lose Weight</a>
     </h1>
   
 
         
-        <a href="/2015/10/30/tools_markdown_ss/" class="archive-article-date">
-  	<time datetime="2015-10-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-10-30</time>
+        <a href="/2016/02/26/android_app_lose_weight/" class="archive-article-date">
+  	<time datetime="2016-02-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="首行缩进"><a href="#首行缩进" class="headerlink" title="首行缩进"></a>首行缩进</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&amp;emsp; 首行缩进 缩进两个字符</span><br><span class="line">&amp;ensp; 首行缩进 缩进一个字符</span><br></pre></td></tr></table></figure>
-<p>效果：</p>
-<p>&emsp; 首行缩进 缩进两个字符</p>
-<p>&ensp; 首行缩进 缩进一个字符</p>
-<h2 id="设置字体颜色"><a href="#设置字体颜色" class="headerlink" title="设置字体颜色"></a>设置字体颜色</h2><blockquote>
-<p>MarkDown 支持html插入</p>
+        <p>前言</p>
+<blockquote>
+<p>关于App瘦身市面上已经有了很多方法实现，值得参考和借鉴，这里记录自己的记录一些瘦身的一些方法。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;font face=&quot;黑体&quot;&gt;我是黑体字&lt;/font&gt;</span><br><span class="line">&lt;font face=&quot;微软雅黑&quot;&gt;我是微软雅黑&lt;/font&gt;</span><br><span class="line">&lt;font face=&quot;STCAIYUN&quot;&gt;我是华文彩云&lt;/font&gt;</span><br><span class="line">&lt;font color=#0099ff size=7 face=&quot;黑体&quot;&gt;color=#0099ff size=72 face=&quot;黑体&quot;&lt;/font&gt;</span><br><span class="line">&lt;font color=#00ffff size=72&gt;color=#00ffff&lt;/font&gt;</span><br><span class="line">&lt;font color=gray size=72&gt;color=gray&lt;/font&gt;</span><br></pre></td></tr></table></figure>
-<font face="黑体">我是黑体字</font>
-
-<font face="微软雅黑">我是微软雅黑</font>
-
-<font face="STCAIYUN">我是华文彩云</font>
-
-<font color="#0099ff" size="7" face="黑体">color=#0099ff size=14 face=”黑体”</font>
-
-<font color="#00ffff" size="14">color=#00ffff</font>
-
-<font color="gray" size="14">color=gray</font>
-
-
-
-<h2 id="设置背景色"><a href="#设置背景色" class="headerlink" title="设置背景色"></a>设置背景色</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1     &lt;table&gt;&lt;tr&gt;&lt;td bgcolor=#7FFFD4&gt;这里的背景色是：Aquamarine，  十六进制颜色值：#7FFFD4， rgb(127, 255, 212)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</span><br></pre></td></tr></table></figure>
-<table><tr><td bgcolor="#7FFFD4">这里的背景色是：Aquamarine，  十六进制颜色值：#7FFFD4， rgb(127, 255, 212)</td></tr></table>
-
-
-<h2 id="修改代码块风格"><a href="#修改代码块风格" class="headerlink" title="修改代码块风格"></a>修改代码块风格</h2><p>实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1		&lt;p&gt;&lt;pre name=&quot;code&quot; class=&quot;java&quot;&gt;  </span><br><span class="line">2		np = (NumberPicker) findViewById(R.id.numberPicker1);</span><br><span class="line">3		String[] city = &#123;&amp;quot;北京&amp;quot;,&amp;quot;上海&amp;quot;,&amp;quot;广州&amp;quot;,&amp;quot;深圳&amp;quot;,&amp;quot;成都&amp;quot;,&amp;quot;天津&amp;quot;&#125;;</span><br><span class="line">4		np.setDisplayedValues(city);</span><br><span class="line">5		np.setMinValue(0);</span><br><span class="line">6		np.setMaxValue(city.length - 1);&lt;/pre&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<p>效果：</p>
-<p><pre name="code" class="java"><br>        np = (NumberPicker) findViewById(R.id.numberPicker1);<br>        String[] city = {&quot;北京&quot;,&quot;上海&quot;,&quot;广州&quot;,&quot;深圳&quot;,&quot;成都&quot;,&quot;天津&quot;};<br>        np.setDisplayedValues(city);<br>        np.setMinValue(0);<br>        np.setMaxValue(city.length - 1);</pre></p>
-
-
-<hr>
-<p>持续更新。。。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">dev-tools</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MarkDown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/10/30/tools_markdown_ss/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
+<h4 id="一、图片资源处理"><a href="#一、图片资源处理" class="headerlink" title="一、图片资源处理"></a>一、图片资源处理</h4><ul>
+<li>图片只要xxhdpi</li>
+</ul>
+<p>基于数据分析，绝大多数用户的设备分辨率都是2x、3x，在切图方面只选取xxhdpi一套图，通过在不同分辨率的机器上测试，UI效果以及内存开销都可以接受</p>
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-tools_markdown" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/29/tools_markdown/">Markdown 入门手册</a>
-    </h1>
-  
-
-        
-        <a href="/2015/10/29/tools_markdown/" class="archive-article-date">
-  	<time datetime="2015-10-28T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-10-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="一-简单功能"><a href="#一-简单功能" class="headerlink" title="一. 简单功能"></a>一. 简单功能</h4>
-        
-          <a class="article-more-a" href="/2015/10/29/tools_markdown/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">dev-tools</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MarkDown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/10/29/tools_markdown/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android_tabbutton_fragment" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/25/android_tabbutton_fragment/">让多个Fragment 切换时不重新实例化</a>
-    </h1>
-  
-
-        
-        <a href="/2015/09/25/android_tabbutton_fragment/" class="archive-article-date">
-  	<time datetime="2015-09-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Fragment设计初衷是为了简化不同屏幕分辨率的开发难度，复用UI和相关数据。</p>
-        
-          <a class="article-more-a" href="/2015/09/25/android_tabbutton_fragment/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Fragment</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/25/android_tabbutton_fragment/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android_as_logcat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/24/android_as_logcat/">Android Studio －－修改LogCat的颜色</a>
-    </h1>
-  
-
-        
-        <a href="/2015/09/24/android_as_logcat/" class="archive-article-date">
-  	<time datetime="2015-09-24T13:55:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.效果</p>
-        
-          <a class="article-more-a" href="/2015/09/24/android_as_logcat/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">android-studio</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/24/android_as_logcat/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android_reactnative" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/24/android_reactnative/">React Native 开发环境部署</a>
-    </h1>
-  
-
-        
-        <a href="/2015/09/24/android_reactnative/" class="archive-article-date">
-  	<time datetime="2015-09-24T13:55:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>简介：</p>
-<p>Facebook 于 2015 年 9 月 15 日发布了 React Native for Android 。React Native 让开发者使用 JavaScript 和 React 编写应用，利用相同的核心代码就可以创建 Web，iOS 和 Android 平台的原生应用。注意这里的 核心 两个词，它指的是那些底层的、与界面无关的逻辑。与 ionic / PhoneGap 这类 Web App 开发框架不同，React Native 主张使用 React 的开发方式来开发 Native 应用，因为在现阶段 Web App 还无法达到 Native App 的体验。所以，React Native 并不强调 write Once, run everywhere ，而是 learn once, write everywhere ：上层使用 JS 和 React 开发不同平台的 UI，下层则可以编写能够复用的核心代码，从而大幅提高开发效率。<br>
-        
-          <a class="article-more-a" href="/2015/09/24/android_reactnative/#more">more >></a>
+          <a class="article-more-a" href="/2016/02/26/android_app_lose_weight/#more">more >></a>
         
       
 
@@ -533,7 +192,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/24/android_reactnative/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/02/26/android_app_lose_weight/">展开全文 >></a>
         </p>
       
 
@@ -563,29 +222,60 @@
 
 
   
-    <article id="post-tools_smartgit" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-android_resources" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/24/tools_smartgit/">SmartGit 初体验</a>
+      <a class="article-title" href="/2016/02/26/android_resources/">Android资源分享</a>
     </h1>
   
 
         
-        <a href="/2015/09/24/tools_smartgit/" class="archive-article-date">
-  	<time datetime="2015-09-24T13:55:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-24</time>
+        <a href="/2016/02/26/android_resources/" class="archive-article-date">
+  	<time datetime="2016-02-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>SmartGit 授权文件 Free Trial License to Non-Commercial<br>
+        <p>前言</p>
+<blockquote>
+<p>是时候该整理我的书签栏了</p>
+</blockquote>
+<h2 id="个人博客"><a href="#个人博客" class="headerlink" title="个人博客"></a>个人博客</h2><ul>
+<li><p><a href="http://stormzhang.com/" target="_blank" rel="noopener">stormzhang</a></p>
+</li>
+<li><p><a href="http://blog.isming.me/" target="_blank" rel="noopener">码农明明桑</a></p>
+</li>
+<li><p><a href="http://droidyue.com/" target="_blank" rel="noopener">技术小黑屋</a></p>
+</li>
+<li><p><a href="http://kymjs.com/" target="_blank" rel="noopener">张涛</a></p>
+</li>
+<li><p><a href="http://rocko.xyz/" target="_blank" rel="noopener">Rocko’s blog</a></p>
+</li>
+<li><p><a href="http://blog.waynell.com/" target="_blank" rel="noopener">Wayne’s blog</a></p>
+</li>
+<li><p><a href="http://waylenw.github.io/" target="_blank" rel="noopener">WaylenWang</a></p>
+</li>
+<li><p><a href="http://www.lightskystreet.com/" target="_blank" rel="noopener">light_sky</a></p>
+</li>
+<li><p><a href="https://www.aswifter.com/" target="_blank" rel="noopener">阳春面</a></p>
+</li>
+<li><p><a href="http://zmywly8866.github.io/" target="_blank" rel="noopener">张明云</a></p>
+</li>
+<li><p><a href="http://www.liaoxuefeng.com/" target="_blank" rel="noopener">廖雪峰</a></p>
+</li>
+<li><p><a href="http://hukai.me/" target="_blank" rel="noopener">胡凯</a></p>
+</li>
+<li><p><a href="http://www.androidperformance.com/" target="_blank" rel="noopener">Gracker</a></p>
+</li>
+</ul>
         
-          <a class="article-more-a" href="/2015/09/24/tools_smartgit/#more">more >></a>
+          <a class="article-more-a" href="/2016/02/26/android_resources/#more">more >></a>
         
       
 
@@ -599,7 +289,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">dev-tools</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">resource</a>
         		</li>
       		
 		</ul>
@@ -609,7 +299,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/24/tools_smartgit/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/02/26/android_resources/">展开全文 >></a>
         </p>
       
 
@@ -639,20 +329,597 @@
 
 
   
-    <article id="post-android_as_plugins" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-android_support_library_23.2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/24/android_as_plugins/">我所使用的Android Studio Plugins</a>
+      <a class="article-title" href="/2016/02/25/android_support_library_23.2/">Android Support Library 23.2</a>
     </h1>
   
 
         
-        <a href="/2015/09/24/android_as_plugins/" class="archive-article-date">
-  	<time datetime="2015-09-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-24</time>
+        <a href="/2016/02/25/android_support_library_23.2/" class="archive-article-date">
+  	<time datetime="2016-02-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>新东西预览：</p>
+<ol>
+<li>Support Vector Drawables and Animated Vector Drawables</li>
+<li>AppCompat DayNight theme</li>
+<li>Design Support Library: Bottom Sheets</li>
+<li>Support v4: MediaBrowserServiceCompat</li>
+<li>RecyclerView</li>
+<li>Custom Tabs</li>
+<li>Leanback for Android TV</li>
+</ol>
+        
+          <a class="article-more-a" href="/2016/02/25/android_support_library_23.2/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/02/25/android_support_library_23.2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-tools_chrome-plugins" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/15/tools_chrome-plugins/">Chorme Plugins</a>
+    </h1>
+  
+
+        
+        <a href="/2016/02/15/tools_chrome-plugins/" class="archive-article-date">
+  	<time datetime="2016-02-15T02:13:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Better-Extension-Manager"><a href="#Better-Extension-Manager" class="headerlink" title="Better Extension Manager"></a><a href="https://chrome.google.com/webstore/detail/better-extension-manager/gnnggbedbbegbdnmimdhkhkfdcikfnjl/related" target="_blank" rel="noopener">Better Extension Manager</a></h2><ul>
+<li><p>简介</p>
+<p>   小巧好用的 Chrome 扩展/应用批量管理扩展。</p>
+</li>
+</ul>
+<h2 id="Xmarks-Bookmark-Sync"><a href="#Xmarks-Bookmark-Sync" class="headerlink" title="Xmarks Bookmark Sync"></a><a href="https://chrome.google.com/webstore/detail/xmarks-bookmark-sync/ajpgkpeckebdhofmmjfgcjjiiejpodla?utm_source=chrome-ntp-icon" target="_blank" rel="noopener">Xmarks Bookmark Sync</a></h2><ul>
+<li><p>简介</p>
+<p>   备份和同步书签</p>
+        
+          <a class="article-more-a" href="/2016/02/15/tools_chrome-plugins/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Plugins</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/02/15/tools_chrome-plugins/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-android_view_viewbadger" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/29/android_view_viewbadger/">小红点实现</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/29/android_view_viewbadger/" class="archive-article-date">
+  	<time datetime="2016-01-28T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="一、效果图"><a href="#一、效果图" class="headerlink" title="一、效果图"></a>一、效果图</h5>
+        
+          <a class="article-more-a" href="/2016/01/29/android_view_viewbadger/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">View</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/29/android_view_viewbadger/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-android_motionEvent" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/28/android_motionEvent/">MotionEvent的getX()与getRawX()区别</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/28/android_motionEvent/" class="archive-article-date">
+  	<time datetime="2016-01-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>getX()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">是表示Widget相对于自身左上角x坐标</span><br></pre></td></tr></table></figure>
+<p>getRawX()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">是表示相对于屏幕左上角的x坐标（注意:这个屏幕左上角是手机屏幕左上角,不管activity是否有titleBar或是否全屏幕）</span><br></pre></td></tr></table></figure>
+<p>getY(),getRawY()同上。</p>
+        
+          <a class="article-more-a" href="/2016/01/28/android_motionEvent/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">View</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/28/android_motionEvent/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-android_tools_gardle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/26/android_tools_gardle/">gardle 教程资料总结</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/26/android_tools_gardle/" class="archive-article-date">
+  	<time datetime="2016-01-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://docs.gradle.org/2.3/dsl/" target="_blank" rel="noopener">Gradle 语法文档</a></p>
+<p><a href="https://docs.gradle.org/2.3/userguide/userguide.html" target="_blank" rel="noopener">Gradle 用户指南</a></p>
+        
+          <a class="article-more-a" href="/2016/01/26/android_tools_gardle/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Gradle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/26/android_tools_gardle/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-tools_pip" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/26/tools_pip/">Mac上安装pip</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/26/tools_pip/" class="archive-article-date">
+  	<time datetime="2016-01-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="一、pip是什么"><a href="#一、pip是什么" class="headerlink" title="一、pip是什么"></a>一、pip是什么</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pip 是安装python包的工具，提供了安装包，列出已经安装的包，升级包以及卸载包的功能。</span><br><span class="line">Pip 是对easy_install的取代，提供了和easy_install相同的查找包的功能，因此可以使</span><br><span class="line">用easy_install安装的包也同样可以使用pip进行安装。</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2016/01/26/tools_pip/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Tools</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/26/tools_pip/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-android_butter_Knife02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/25/android_butter_Knife02/">Butter Knife 原理</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/25/android_butter_Knife02/" class="archive-article-date">
+  	<time datetime="2016-01-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="什么是IOC？"><a href="#什么是IOC？" class="headerlink" title="什么是IOC？"></a>什么是IOC？</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Inversion of Control，英文缩写为IOC，字面翻译：控制反转。传统的写法，你要用这些</span><br><span class="line">成员变量，那么你就new 出来用呗！你配置个xml文件，里面标明哪个类，里面用了哪些成员变</span><br><span class="line">量，等待加载这个类的时候，我帮你注入（new）进去，嫌配置文件麻烦，那用注解呗~在你需</span><br><span class="line">要注入的成员变量上面加个注解，就是一个类里面需要用到很多个成员变量，其实就是把字符串</span><br><span class="line">类路径变成类么，这个时候需要用到反射。</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2016/01/25/android_butter_Knife02/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Butter Knife</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/25/android_butter_Knife02/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-android_lombok" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/25/android_lombok/">Lombok 使用</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/25/android_lombok/" class="archive-article-date">
+  	<time datetime="2016-01-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-25</time>
 </a>
         
       </header>
@@ -660,10 +927,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>常用Android Studio 插件总结</p>
+<p>Lombok 是一种 Java Archive (JAR) 文件，可用来消除 Java 代码的冗长。</p>
 </blockquote>
         
-          <a class="article-more-a" href="/2015/09/24/android_as_plugins/#more">more >></a>
+          <a class="article-more-a" href="/2016/01/25/android_lombok/#more">more >></a>
         
       
 
@@ -677,15 +944,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">plugins</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Lombok</a>
         		</li>
       		
 		</ul>
@@ -695,240 +958,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/24/android_as_plugins/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android_arcphone" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/22/android_arcphone/">关于无线网络连接手机</a>
-    </h1>
-  
-
-        
-        <a href="/2015/09/22/android_arcphone/" class="archive-article-date">
-  	<time datetime="2015-09-22T13:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.使用数据线连接手机，手机监听16999端口<br>
-        
-          <a class="article-more-a" href="/2015/09/22/android_arcphone/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/22/android_arcphone/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android_aysntask" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/21/android_aysntask/">AsynTask 简单使用</a>
-    </h1>
-  
-
-        
-        <a href="/2015/09/21/android_aysntask/" class="archive-article-date">
-  	<time datetime="2015-09-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p>前言</p>
-<blockquote>
-<p>AsyTask 是一种轻量级的异步任务，它在线程池在执行后台任务，然后把执行的进度和最终<br>结果传递给主线程并在主线程中更新UI。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2015/09/21/android_aysntask/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/21/android_aysntask/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android_expandablelistView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/24/android_expandablelistView/">Android－－ExpandableListView</a>
-    </h1>
-  
-
-        
-        <a href="/2015/07/24/android_expandablelistView/" class="archive-article-date">
-  	<time datetime="2015-07-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="一、实现"><a href="#一、实现" class="headerlink" title="一、实现"></a>一、实现</h5><p>1.首先在activity_main.xml中指定ExpandableListView组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;RelativeLayout</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;com.wt.expandablelistviewdemo.MainActivity&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;ExpandableListView</span><br><span class="line">      android:id=&quot;@+id/expendlist&quot;</span><br><span class="line">      android:layout_width=&quot;match_parent&quot;</span><br><span class="line">      android:layout_height=&quot;match_parent&quot;</span><br><span class="line">      /&gt;</span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2015/07/24/android_expandablelistView/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/07/24/android_expandablelistView/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/01/25/android_lombok/">展开全文 >></a>
         </p>
       
 
@@ -960,7 +990,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
     </nav>
   
 
@@ -1224,6 +1254,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Svn</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">kotlin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Rxjava</a>
               </li>
             
             <div class="clearfix"></div>
