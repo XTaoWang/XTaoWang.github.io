@@ -139,6 +139,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java_reflection" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/01/java_reflection/">Java反射机制</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/01/java_reflection/" class="archive-article-date">
+  	<time datetime="2019-02-28T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、获取 目标类型的Class对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; classType = carson.getClass();</span><br><span class="line">Class&lt;?&gt; classType1 = Boolean.class;</span><br><span class="line">Class&lt;?&gt; classType2 = Class.forName(&quot;java.lang.Boolean&quot;);</span><br><span class="line">Class&lt;?&gt; classType3 = Boolean.TYPE;</span><br><span class="line"></span><br><span class="line">System.out.println(classType);</span><br><span class="line">System.out.println(classType1);</span><br><span class="line">System.out.println(classType2);</span><br><span class="line">System.out.println(classType3);</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class java.lang.Boolean</span><br><span class="line">class java.lang.Boolean</span><br><span class="line">class java.lang.Boolean</span><br><span class="line">boolean</span><br></pre></td></tr></table></figure>
+<p>二、通过 Class 对象分别获取Constructor类对象、Method类对象 &amp; Field 类对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;-- 1. 获取类的构造函数（传入构造函数的参数类型）-&gt;&gt;</span><br><span class="line">  // a. 获取指定的构造函数 （公共 / 继承）</span><br><span class="line">  Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)</span><br><span class="line">  // b. 获取所有的构造函数（公共 / 继承） </span><br><span class="line">  Constructor&lt;?&gt;[] getConstructors(); </span><br><span class="line">    // c. 获取指定的构造函数 （ 不包括继承）</span><br><span class="line">  Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes) </span><br><span class="line">  // d. 获取所有的构造函数（ 不包括继承）</span><br><span class="line">  Constructor&lt;?&gt;[] getDeclaredConstructors(); </span><br><span class="line">  // 特别注意：</span><br><span class="line">  </span><br><span class="line">  // 1. 不带 &quot;Declared&quot;的方法支持取出包括继承、公有（Public） &amp; 不包括有（Private）的构造函数</span><br><span class="line">  // 2. 带 &quot;Declared&quot;的方法是支持取出包括公共（Public）、保护（Protected）、默认（包）访问和私有（Private）的构造方法，但不包括继承的构造函数</span><br><span class="line">  </span><br><span class="line">&lt;--  2. 获取类的属性（传入属性名） --&gt;</span><br><span class="line">  // a. 获取指定的属性（公共 / 继承）</span><br><span class="line">   Field getField(String name) ;</span><br><span class="line">  // b. 获取所有的属性（公共 / 继承）</span><br><span class="line">   Field[] getFields() ;</span><br><span class="line">  // c. 获取指定的所有属性 （不包括继承）</span><br><span class="line">   Field getDeclaredField(String name) ；</span><br><span class="line">  // d. 获取所有的所有属性 （不包括继承）</span><br><span class="line">   Field[] getDeclaredFields() ；</span><br><span class="line">// 最终都是获得一个Field类对象</span><br><span class="line"></span><br><span class="line">&lt;-- 3. 获取类的方法（传入方法名 &amp; 参数类型）--&gt;</span><br><span class="line">  // a. 获取指定的方法（公共 / 继承）</span><br><span class="line">    Method getMethod(String name, Class&lt;?&gt;... parameterTypes) ；</span><br><span class="line">  // b. 获取所有的方法（公共 / 继承）</span><br><span class="line">   Method[] getMethods() ；</span><br><span class="line">  // c. 获取指定的方法 （ 不包括继承）</span><br><span class="line">   Method getDeclaredMethod(String name, Class&lt;?&gt;... parameterTypes) ；</span><br><span class="line">  // d. 获取所有的方法（ 不包括继承）</span><br><span class="line">   Method[] getDeclaredMethods() ；</span><br><span class="line"></span><br><span class="line">&lt;-- 4. Class类的其他常用方法 --&gt;</span><br><span class="line">getSuperclass(); </span><br><span class="line">// 返回父类</span><br><span class="line"></span><br><span class="line">String getName(); </span><br><span class="line">// 作用：返回完整的类名（含包名，如java.lang.String ） </span><br><span class="line"></span><br><span class="line">Object newInstance(); </span><br><span class="line">// 作用：快速地创建一个类的实例</span><br><span class="line">// 具体过程：调用默认构造器（若该类无默认构造器，则抛出异常 </span><br><span class="line">// 注：若需要为构造器提供参数需使用java.lang.reflect.Constructor中的newInstance（）</span><br></pre></td></tr></table></figure>
+<p>三、 通过 Constructor类对象、Method类对象 &amp; Field类对象分别获取类的构造函数、方法 &amp; 属性的具体信息 &amp; 进行操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// 即以下方法都分别属于`Constructor`类、`Method`类 &amp; `Field`类的方法。</span><br><span class="line"></span><br><span class="line">&lt;-- 1. 通过Constructor 类对象获取类构造函数信息 --&gt;</span><br><span class="line">  String getName()；// 获取构造器名</span><br><span class="line">  Class getDeclaringClass()；// 获取一个用于描述类中定义的构造器的Class对象</span><br><span class="line">  int getModifiers()；// 返回整型数值，用不同的位开关描述访问修饰符的使用状况</span><br><span class="line">  Class[] getExceptionTypes()；// 获取描述方法抛出的异常类型的Class对象数组</span><br><span class="line">  Class[] getParameterTypes()；// 获取一个用于描述参数类型的Class对象数组</span><br><span class="line"></span><br><span class="line">&lt;-- 2. 通过Field类对象获取类属性信息 --&gt;</span><br><span class="line">  String getName()；// 返回属性的名称</span><br><span class="line">  Class getDeclaringClass()； // 获取属性类型的Class类型对象</span><br><span class="line">  Class getType()；// 获取属性类型的Class类型对象</span><br><span class="line">  int getModifiers()； // 返回整型数值，用不同的位开关描述访问修饰符的使用状况</span><br><span class="line">  Object get(Object obj) ；// 返回指定对象上 此属性的值</span><br><span class="line">  void set(Object obj, Object value) // 设置 指定对象上此属性的值为value</span><br><span class="line"> </span><br><span class="line">&lt;-- 3. 通过Method 类对象获取类方法信息 --&gt;</span><br><span class="line">  String getName()；// 获取方法名</span><br><span class="line">  Class getDeclaringClass()；// 获取方法的Class对象	</span><br><span class="line">  int getModifiers()；// 返回整型数值，用不同的位开关描述访问修饰符的使用状况</span><br><span class="line">  Class[] getExceptionTypes()；// 获取用于描述方法抛出的异常类型的Class对象数组</span><br><span class="line">  Class[] getParameterTypes()；// 获取一个用于描述参数类型的Class对象数组</span><br><span class="line"></span><br><span class="line">&lt;--额外：java.lang.reflect.Modifier类 --&gt;</span><br><span class="line">// 作用：获取访问修饰符</span><br><span class="line"></span><br><span class="line">static String toString(int modifiers)	</span><br><span class="line">// 获取对应modifiers位设置的修饰符的字符串表示</span><br><span class="line"></span><br><span class="line">static boolean isXXX(int modifiers)	</span><br><span class="line">// 检测方法名中对应的修饰符在modifiers中的值</span><br><span class="line"></span><br><span class="line">void setAccessible(boolean flag)	</span><br><span class="line">// 作用：为反射对象设置可访问标志</span><br><span class="line">// 规则：flag = true时 ，表示已屏蔽Java语言的访问检查，使得可以访问 &amp; 修改对象的私有属性</span><br><span class="line"></span><br><span class="line">boolean isAccessible()	</span><br><span class="line">// 返回反射对象的可访问标志的值</span><br><span class="line"></span><br><span class="line">static void setAccessible(AccessibleObject[] array, boolean flag)	</span><br><span class="line">// 设置对象数组可访问标志</span><br></pre></td></tr></table></figure>
+<p>四、利用反射调用类的构造函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class Student &#123;</span><br><span class="line"></span><br><span class="line">    // 无参构造函数</span><br><span class="line">    public Student() &#123;</span><br><span class="line">        System.out.println(&quot;调用了无参构造函数&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 有参构造函数</span><br><span class="line">    public Student(String str) &#123;</span><br><span class="line">        System.out.println(&quot;调用了有参构造函数&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private String name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  // 1. 获取Student类的Class对象</span><br><span class="line">        Class studentClass = Student.class;</span><br><span class="line">        </span><br><span class="line">        // 2.1 通过Class对象获取Constructor类对象，从而调用无参构造方法</span><br><span class="line">        // 注：构造函数的调用实际上是在newInstance()，而不是在getConstructor()中调用</span><br><span class="line">        Object mObj1 = studentClass.getConstructor().newInstance();</span><br><span class="line"></span><br><span class="line">        // 2.2 通过Class对象获取Constructor类对象（传入参数类型），从而调用有参构造方法</span><br><span class="line">        Object mObj2 = studentClass.getConstructor(String.class).newInstance(&quot;Wangtao&quot;);</span><br></pre></td></tr></table></figure>
+<p>五、 利用反射调用类对象的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public class Student &#123;</span><br><span class="line"></span><br><span class="line">    // 无参数方法</span><br><span class="line">    public void setName1 ()&#123;</span><br><span class="line">        System.out.println(&quot;调用了无参方法：setName1（）&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 有参数方法</span><br><span class="line">    public void setName2 (String str)&#123;</span><br><span class="line">        System.out.println(&quot;调用了有参方法setName2（String str）:&quot; + str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> // 1. 获取Student类的Class对象</span><br><span class="line">       Class studentClass = Student.class;</span><br><span class="line"></span><br><span class="line">       // 2. 通过Class对象创建Student类的对象</span><br><span class="line">       Object  mStudent = studentClass.newInstance();</span><br><span class="line"></span><br><span class="line">       // 3.1 通过Class对象获取方法setName1（）的Method对象:需传入方法名</span><br><span class="line">       // 因为该方法 = 无参，所以不需要传入参数</span><br><span class="line">       Method msetName1 = studentClass.getMethod(&quot;setName1&quot;);</span><br><span class="line"></span><br><span class="line">       // 通过Method对象调用setName1（）：需传入创建的实例</span><br><span class="line">       msetName1.invoke(mStudent);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       // 3.2 通过Class对象获取方法setName2（）的Method对象:需传入方法名 &amp; 参数类型</span><br><span class="line">       Method msetName2 = studentClass.getMethod(&quot;setName2&quot;,String.class);</span><br><span class="line"></span><br><span class="line">       // 通过Method对象调用setName2（）：需传入创建的实例 &amp; 参数值</span><br><span class="line">       msetName2.invoke(mStudent,&quot;wangtao&quot;);</span><br></pre></td></tr></table></figure>
+<p>六、优点与缺点</p>
+<p>优点： 灵活性高。因为反射属于动态编译，即只有到运行时才动态创建 &amp;获取对象实例。</p>
+<p>缺点： 执行效率低<br>因为反射的操作 主要通过JVM执行，所以时间成本会 高于 直接执行相同操作。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/01/java_reflection/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-book_binary_system" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -926,92 +1014,6 @@
 
 
   
-    <article id="post-a_app_security" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/10/a_app_security/">Android 应用安全防护等基本策略</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/10/a_app_security/" class="archive-article-date">
-  	<time datetime="2018-09-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>混淆机制</li>
-</ul>
-<p>1.代码混淆</p>
-<p>2.资源混淆</p>
-<ul>
-<li><p>签名保护</p>
-</li>
-<li><p>手动注册 native 方法</p>
-</li>
-<li><p>增加应用的反调试功能</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/10/a_app_security/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1294,6 +1296,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Rxjava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
             
             <div class="clearfix"></div>
