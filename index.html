@@ -139,6 +139,691 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-linux_firewall" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/24/linux_firewall/">Linux 防火墙</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/24/linux_firewall/" class="archive-article-date">
+  	<time datetime="2020-07-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Linux中有两种防火墙软件，ConterOS7.0以上使用的是firewall，ConterOS7.0以下使用的是iptables，本文将分别介绍两种防火墙软件的使用。</p>
+</blockquote>
+<h4 id="Firewall"><a href="#Firewall" class="headerlink" title="Firewall"></a>Firewall</h4><ul>
+<li>开启防火墙</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭防火墙</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看防火墙状态</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置开机启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>禁用开机启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重启防火墙</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<ul>
+<li>开放端口（修改后需要重启防火墙方可生效）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=8080/tcp --permanent</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看开放的端口</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-ports</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭端口</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --remove-port=8080/tcp --permanent</span><br></pre></td></tr></table></figure>
+<h4 id="Iptables"><a href="#Iptables" class="headerlink" title="Iptables"></a>Iptables</h4><h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><blockquote>
+<p>由于CenterOS7.0以上版本并没有预装Iptables,我们需要自行装。</p>
+</blockquote>
+<ul>
+<li><p>安装前先关闭firewall防火墙</p>
+</li>
+<li><p>安装iptables</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install iptables</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装iptables-services</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install iptables-services</span><br></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
+<li>开启防火墙</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start iptables.service</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭防火墙</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop iptables.service</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看防火墙状态</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status iptables.service</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置开机启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable iptables.service</span><br></pre></td></tr></table></figure>
+<ul>
+<li>禁用开机启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable iptables.service</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看filter表的几条链规则(INPUT链可以看出开放了哪些端口)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -L -n</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看NAT表的链规则</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -L -n</span><br></pre></td></tr></table></figure>
+<ul>
+<li>清除防火墙所有规则</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iptables -F</span><br><span class="line"></span><br><span class="line">iptables -X</span><br><span class="line"></span><br><span class="line">iptables -Z</span><br></pre></td></tr></table></figure>
+<ul>
+<li>给INPUT链添加规则（开放8080端口）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp --dport 8080 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找规则所在行号</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -L INPUT --line-numbers -n</span><br></pre></td></tr></table></figure>
+<ul>
+<li>根据行号删除过滤规则（关闭8080端口）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -D INPUT 1</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/24/linux_firewall/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux_common" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/23/linux_common/">Linux命令</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/23/linux_common/" class="archive-article-date">
+  	<time datetime="2020-07-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="系统服务管理"><a href="#系统服务管理" class="headerlink" title="系统服务管理"></a>系统服务管理</h4><p>systemctl</p>
+<ul>
+<li>输出系统中各个服务的状态：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-units --type=service</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看系统服务的运行状态</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭服务</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动服务</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重新启动服务（不管当前服务是启动还是关闭）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重新载入配置信息而不中断服务</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl reload firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>禁止服务开机自启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置服务开机自启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable firewalld</span><br></pre></td></tr></table></figure>
+<h4 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h4><h5 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h5><p>列出当前目录(/)下的所有文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l /</span><br></pre></td></tr></table></figure>
+<h5 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h5><p>获取目前所在工作目录的绝对路径</p>
+<h5 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h5><p>改变当前工作目录</p>
+<h5 id="data"><a href="#data" class="headerlink" title="data"></a>data</h5><p>显示或修改系统时间与日期；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date &apos;+%Y-%m-%d %H:%M:%S&apos;</span><br></pre></td></tr></table></figure>
+<h5 id="passwd"><a href="#passwd" class="headerlink" title="passwd"></a>passwd</h5><p>用于设置用户密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd root</span><br></pre></td></tr></table></figure>
+<h5 id="su"><a href="#su" class="headerlink" title="su"></a>su</h5><p>改变用户身份（切换到超级用户）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su -</span><br></pre></td></tr></table></figure>
+<h5 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h5><p>用于清除屏幕信息</p>
+<h5 id="man"><a href="#man" class="headerlink" title="man"></a>man</h5><p>显示指定命令的帮助信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man ls</span><br></pre></td></tr></table></figure>
+<h5 id="who"><a href="#who" class="headerlink" title="who"></a>who</h5><ul>
+<li>查询系统处于什么运行级别</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">who -r</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示目前登录到系统的用户</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">who -buT</span><br></pre></td></tr></table></figure>
+<h5 id="free"><a href="#free" class="headerlink" title="free"></a>free</h5><p>显示系统内存状态（单位MB）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -m</span><br></pre></td></tr></table></figure>
+<h5 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h5><p>显示系统进程运行动态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef</span><br></pre></td></tr></table></figure>
+<p>查看sshd进程的运行动态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep sshd</span><br></pre></td></tr></table></figure>
+<h5 id="top"><a href="#top" class="headerlink" title="top"></a>top</h5><p>查看即时活跃的进程，类似Windows的任务管理器</p>
+<h5 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h5><p>创建目录</p>
+<h5 id="more"><a href="#more" class="headerlink" title="more"></a>more</h5><p>用于文件过长时分页查看文件内容 每页10行查看boot.log文件</p>
+<h5 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h5><p>查看Linux启动日志文件文件，并标明行号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -Ab /var/log/boot.log</span><br></pre></td></tr></table></figure>
+<h5 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h5><p>创建text.txt文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch text.txt</span><br></pre></td></tr></table></figure>
+<h5 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h5><ul>
+<li>删除文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm text.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>强制删除某个目录及其子目录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf testdir/</span><br></pre></td></tr></table></figure>
+<h5 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h5><p>将test1目录复制到test2目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r /mydata/tes1 /mydata/test2</span><br></pre></td></tr></table></figure>
+<h5 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h5><p>移动或覆盖文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv text.txt text2.txt</span><br></pre></td></tr></table></figure>
+<h4 id="压缩与解压"><a href="#压缩与解压" class="headerlink" title="压缩与解压"></a>压缩与解压</h4><h5 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h5><ul>
+<li>将/etc文件夹中的文件归档到文件etc.tar（并不会进行压缩）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf /mydata/etc.tar /etc</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用gzip压缩文件夹/etc中的文件到文件etc.tar.gz</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zcvf  /Users/wangtao/Downloads/test1.tar.gz /Users/wangtao/Downloads/test1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用bzip2压缩文件夹/etc到文件/etc.tar.bz2</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -jcvf  /Users/wangtao/Downloads/test1.tar.bz2 /Users/wangtao/Downloads/test1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>分页查看压缩包中内容（gzip）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -ztvf /Users/wangtao/Downloads/test1.tar.gz |more -c -10</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解压文件到当前目录（gzip) 会覆盖目录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf /Users/wangtao/Downloads/test1.tar.gz</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解压文件到指定目录（gzip）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar  -zxvf /Users/wangtao/Downloads/test1.tar.gz -C test2</span><br></pre></td></tr></table></figure>
+<h4 id="磁盘和网络管理"><a href="#磁盘和网络管理" class="headerlink" title="磁盘和网络管理"></a>磁盘和网络管理</h4><h5 id="df"><a href="#df" class="headerlink" title="df"></a>df</h5><p>查看磁盘空间占用情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -hT</span><br></pre></td></tr></table></figure>
+<h5 id="dh"><a href="#dh" class="headerlink" title="dh"></a>dh</h5><p>查看当前目录下的文件及文件夹所占大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1 ./*</span><br></pre></td></tr></table></figure>
+<h5 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h5><p>显示当前网络接口状态</p>
+<h5 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h5><ul>
+<li>查看当前路由信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -rn</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看所有有效TCP连接</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -an</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看系统中启动的监听服务</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -tulnp</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看处于连接状态的系统资源信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -atunp</span><br></pre></td></tr></table></figure>
+<h5 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h5><p>从网络上下载文件</p>
+<h4 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h4><h5 id="安装上传下载工具"><a href="#安装上传下载工具" class="headerlink" title="安装上传下载工具"></a>安装上传下载工具</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y lrzsz</span><br></pre></td></tr></table></figure>
+<h5 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rz</span><br></pre></td></tr></table></figure>
+<h5 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sz fileName</span><br></pre></td></tr></table></figure>
+<h4 id="软件的安装与管理"><a href="#软件的安装与管理" class="headerlink" title="软件的安装与管理"></a>软件的安装与管理</h4><p>rpm</p>
+<ul>
+<li>安装软件包：rpm -ivh nginx-1.12.2-2.el7.x86_64.rpm</li>
+<li>模糊搜索软件包：rpm -qa | grep nginx</li>
+<li>精确查找软件包：rpm -qa nginx</li>
+<li>查询软件包的安装路径：rpm -ql nginx-1.12.2-2.el7.x86_64</li>
+<li>查看软件包的概要信息：rpm -qi nginx-1.12.2-2.el7.x86_64</li>
+<li>验证软件包内容和安装文件是否一致：rpm -V nginx-1.12.2-2.el7.x86_64</li>
+<li>更新软件包：rpm -Uvh nginx-1.12.2-2.el7.x86_64</li>
+<li>删除软件包：rpm -e nginx-1.12.2-2.el7.x86_64</li>
+</ul>
+<p>yum</p>
+<ul>
+<li>安装软件包： yum install nginx</li>
+<li>检查可以更新的软件包：yum check-update</li>
+<li>更新指定的软件包：yum update nginx</li>
+<li>在资源库中查找软件包信息：yum info nginx*</li>
+<li>列出已经安装的所有软件包：yum info installed</li>
+<li>列出软件包名称：yum list nginx*</li>
+<li>模糊搜索软件包：yum search nginx</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/23/linux_common/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql_common" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/23/mysql_common/">必备 Mysql 命令</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/23/mysql_common/" class="archive-article-date">
+  	<time datetime="2020-07-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"># 查看所有数据库</span><br><span class="line">show databases</span><br><span class="line"># 删除数据库 【IF EXISTS 用于防止当数据库不存在时发生错误】</span><br><span class="line">DROP database IF EXISTS `test`;</span><br><span class="line"># 创建一个数据库 并设置数据库属性 字符集 和 排序规则</span><br><span class="line">CREATE database `test` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;</span><br><span class="line"></span><br><span class="line"># 创建表</span><br><span class="line">create table emp(ename varchar(10),hiredate date,sal decimal(10,2),deptno int(2)) </span><br><span class="line">create table dept(deptno int(2),deptname varchar(10))</span><br><span class="line"># 查看所有数据表</span><br><span class="line">show tables</span><br><span class="line"># 查看表的定义</span><br><span class="line">desc emp</span><br><span class="line"># 查看表的定义（详细）</span><br><span class="line">show create table `emp`</span><br><span class="line"></span><br><span class="line"># 删除表</span><br><span class="line">drop table emp</span><br><span class="line"># 修改表名</span><br><span class="line">alter table emp1 rename emp</span><br><span class="line"># 修改表字段</span><br><span class="line">alter table emp modify ename varchar(20)</span><br><span class="line"># 添加表字段</span><br><span class="line">alter table emp add column age int(3)</span><br><span class="line"># 删除表字段</span><br><span class="line">alter table emp drop column age1</span><br><span class="line"># 字段改名字</span><br><span class="line">alter table emp change age age1 int(4)</span><br><span class="line"></span><br><span class="line"># 数据库操纵语句 DML</span><br><span class="line"># 指定名称插入</span><br><span class="line">insert into emp (ename,hiredate,sal,deptno) values (&apos;张三&apos;,&apos;2020-07-31&apos;,&apos;2000&apos;,&apos;1&apos;)</span><br><span class="line"># 不指定名称插入</span><br><span class="line">insert into emp values (&apos;lisi&apos;,&apos;2018-01-01&apos;,&apos;2000&apos;,1)</span><br><span class="line"># 批量插入数据</span><br><span class="line">insert into emp values (&apos;test1&apos;,&apos;2018-01-01&apos;,&apos;2000&apos;,1),(&apos;test2&apos;,&apos;2018-01-01&apos;,&apos;2000&apos;,1)</span><br><span class="line">insert into dept values(1,&apos;dept1&apos;),(2,&apos;dept2&apos;)</span><br><span class="line"></span><br><span class="line"># 修改记录</span><br><span class="line">update emp set sal=&apos;4000&apos;, deptno=2 where ename=&apos;lisi&apos;</span><br><span class="line"># 删除记录</span><br><span class="line">delete from emp where ename=&apos;test2&apos;</span><br><span class="line"></span><br><span class="line"># 查询</span><br><span class="line"># 查询所有记录</span><br><span class="line">select * from emp</span><br><span class="line"># 查询不重复的记录</span><br><span class="line">select distinct deptno from emp</span><br><span class="line"># 条件查询</span><br><span class="line">select * from emp where deptno=1 and sal&lt; 3000</span><br><span class="line"># 排序和限制</span><br><span class="line">select * from emp order by deptno desc limit 2</span><br><span class="line"># 分页查询 （查询从第0条记录开始10条）</span><br><span class="line">select * from emp order by deptno desc limit 0,10</span><br><span class="line"># 聚合 (查询部门人数大于1的部门编号)：</span><br><span class="line">select deptno, count(1) from emp group by deptno having count(1) &gt;1</span><br><span class="line"># 连接查询</span><br><span class="line">select * from emp e left join dept d on e.deptno = d.deptno</span><br><span class="line"># 子查询</span><br><span class="line">select * from emp where deptno in (select deptno from dept)</span><br><span class="line"># 记录联合</span><br><span class="line">select deptno from emp union select deptno from dept</span><br><span class="line"></span><br><span class="line"># 数据控制语句(DCL)</span><br><span class="line"># 授予操作权限(将test数据库中所有表的select和insert权限授予test用户)</span><br><span class="line">grant select,insert on test.* to &apos;test&apos;@&apos;localhost&apos; identified by &apos;123&apos;</span><br><span class="line"># 查看账号权限</span><br><span class="line">show grants for &apos;test&apos;@&apos;localhost&apos;</span><br><span class="line"># 收回操作权限</span><br><span class="line">revoke insert on test.* from &apos;test&apos;@&apos;localhost&apos;</span><br><span class="line"># 授予所有数据库的所有权限</span><br><span class="line">grant all privileges on *.* to &apos;test&apos;@&apos;localhost&apos;</span><br><span class="line"># 授予所有数据库的所有权限(包括grant)</span><br><span class="line">grant all privileges on *.* to &apos;test&apos;@&apos;localhost&apos; with grant option</span><br><span class="line"># 授予SUPER PROCESS FILE权限（系统权限不能指定数据库）</span><br><span class="line">grant super,process,file on *.* to &apos;test&apos;@&apos;localhost&apos;</span><br><span class="line"># 只授予登录权限</span><br><span class="line">grant usage on *.* to &apos;test&apos;@&apos;localhost&apos;</span><br><span class="line"></span><br><span class="line"># 账号相关</span><br><span class="line"># 删除账号</span><br><span class="line">drop user &apos;test&apos;@&apos;localhost&apos;</span><br><span class="line"># 修改自己的密码</span><br><span class="line">set password = password(&apos;123&apos;)</span><br><span class="line"># 管理员修改他人密码</span><br><span class="line">set password for &apos;test&apos;@&apos;localhost&apos; = password(&apos;123&apos;)</span><br><span class="line"></span><br><span class="line"># 字符集相关</span><br><span class="line"># 查看字符集</span><br><span class="line">show variables like &apos;character%&apos;</span><br><span class="line"># 创建数据库时指定字符集</span><br><span class="line">create database test2 character set utf8</span><br><span class="line"></span><br><span class="line"># 时区相关</span><br><span class="line"># 查看当前时区（UTC为世界统一时间，中国为UTC+8）</span><br><span class="line">show variables like &quot;%time_zone%&quot;</span><br><span class="line"># 修改mysql全局时区为北京时间，即我们所在的东8区</span><br><span class="line">set global time_zone = &apos;+8:00&apos;;</span><br><span class="line"># 修改当前会话时区</span><br><span class="line">set time_zone = &apos;+8:00&apos;</span><br><span class="line"></span><br><span class="line"># 立即生效</span><br><span class="line">flush privileges</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/23/mysql_common/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-docker_common" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/docker_common/">docker 常用命令记录</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/01/docker_common/" class="archive-article-date">
+  	<time datetime="2020-05-31T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Docker-环境安装"><a href="#Docker-环境安装" class="headerlink" title="Docker 环境安装"></a>Docker 环境安装</h4><p>1.安装yum-utils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
+<p>2.为yum源添加docker仓库位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<p>3.安装docker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce</span><br></pre></td></tr></table></figure>
+<p>4.启动docker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+<h4 id="Docker-镜像常用命令"><a href="#Docker-镜像常用命令" class="headerlink" title="Docker 镜像常用命令"></a>Docker 镜像常用命令</h4><p>1.搜索镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search java</span><br></pre></td></tr></table></figure>
+<p>2.下载镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull java:8</span><br></pre></td></tr></table></figure>
+<h4 id="如何查找镜像支持的版本"><a href="#如何查找镜像支持的版本" class="headerlink" title="如何查找镜像支持的版本"></a>如何查找镜像支持的版本</h4><ul>
+<li><p>进入docker hub的官网，地址：<a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a></p>
+</li>
+<li><p>然后搜索需要的镜像</p>
+</li>
+<li><p>进行镜像的下载操作：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker pull nginx:1.17.0</span><br></pre></td></tr></table></figure>
+<h4 id="列出镜像"><a href="#列出镜像" class="headerlink" title="列出镜像"></a>列出镜像</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+<h4 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi java:8</span><br></pre></td></tr></table></figure>
+<h4 id="指定名称删除镜像（强制）"><a href="#指定名称删除镜像（强制）" class="headerlink" title="指定名称删除镜像（强制）"></a>指定名称删除镜像（强制）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi -f java:8</span><br></pre></td></tr></table></figure>
+<h4 id="删除所有没有引用的镜像"><a href="#删除所有没有引用的镜像" class="headerlink" title="删除所有没有引用的镜像"></a>删除所有没有引用的镜像</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi `docker images | grep none | awk &apos;&#123;print $3&#125;&apos;`</span><br></pre></td></tr></table></figure>
+<h4 id="强制删除所有镜像"><a href="#强制删除所有镜像" class="headerlink" title="强制删除所有镜像"></a>强制删除所有镜像</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi -f $(docker images)</span><br></pre></td></tr></table></figure>
+<h4 id="Docker-容器常用命令"><a href="#Docker-容器常用命令" class="headerlink" title="Docker 容器常用命令"></a>Docker 容器常用命令</h4><p>1.新建并启动容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 80:80 --name nginx -d nginx:1.17.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>-d选项：表示后台运行</p>
+</li>
+<li><p>–name选项：指定运行后容器的名字为nginx,之后可以通过名字来操作容器</p>
+</li>
+<li><p>-p选项：指定端口映射，格式为：hostPort:containerPort</p>
+</li>
+</ul>
+<h3 id="列出容器"><a href="#列出容器" class="headerlink" title="列出容器"></a>列出容器</h3><p>1.列出运行中的容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>2.列出所有容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<h4 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># $ContainerName及$ContainerId可以用docker ps命令查询出来</span><br><span class="line">docker stop $ContainerName(或者$ContainerId)</span><br></pre></td></tr></table></figure>
+<p>比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker stop nginx</span><br><span class="line"># 或者</span><br><span class="line">docker stop c5f5d5125587</span><br></pre></td></tr></table></figure>
+<h4 id="强制停止容器"><a href="#强制停止容器" class="headerlink" title="强制停止容器"></a>强制停止容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker kill $ContainerName(或者$ContainerId)</span><br></pre></td></tr></table></figure>
+<h4 id="启动已停止的容器"><a href="#启动已停止的容器" class="headerlink" title="启动已停止的容器"></a>启动已停止的容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start $ContainerName(或者$ContainerId)</span><br></pre></td></tr></table></figure>
+<h4 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h4><p>1.先查询出容器的pid</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect --format &quot;&#123;&#123;.State.Pid&#125;&#125;&quot; $ContainerName(或者$ContainerId)</span><br></pre></td></tr></table></figure>
+<p>2.根据容器的pid进入容器（Mac 需要安装 nsenter 工具 ）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsenter --target &quot;$pid&quot; --mount --uts --ipc --net --pid</span><br></pre></td></tr></table></figure>
+<h4 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h4><p>1.删除指定容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm $ContainerName(或者$ContainerId)</span><br></pre></td></tr></table></figure>
+<p>2.按名称删除容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker rm `docker ps -a | grep mall-* | awk &apos;&#123;print $1&#125;&apos;`</span><br></pre></td></tr></table></figure>
+<p>3.强制删除所有容器；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -f $(docker ps -a -q)</span><br></pre></td></tr></table></figure>
+<h4 id="查看容器的日志"><a href="#查看容器的日志" class="headerlink" title="查看容器的日志"></a>查看容器的日志</h4><p>1.查看当前全部日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs $ContainerName(或者$ContainerId)</span><br></pre></td></tr></table></figure>
+<p>2.动态查看日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs $ContainerName(或者$ContainerId) -f</span><br></pre></td></tr></table></figure>
+<h4 id="查看容器的IP地址"><a href="#查看容器的IP地址" class="headerlink" title="查看容器的IP地址"></a>查看容器的IP地址</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect --format &apos;&#123;&#123; .NetworkSettings.IPAddress &#125;&#125;&apos; $ContainerName(或者$ContainerId)</span><br></pre></td></tr></table></figure>
+<h4 id="修改容器的启动方式"><a href="#修改容器的启动方式" class="headerlink" title="修改容器的启动方式"></a>修改容器的启动方式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container update --restart=always $ContainerName</span><br></pre></td></tr></table></figure>
+<h4 id="同步宿主机时间到容器"><a href="#同步宿主机时间到容器" class="headerlink" title="同步宿主机时间到容器"></a>同步宿主机时间到容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp /etc/localtime $ContainerName(或者$ContainerId):/etc/</span><br></pre></td></tr></table></figure>
+<h4 id="指定容器时区"><a href="#指定容器时区" class="headerlink" title="指定容器时区"></a>指定容器时区</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 80:80 --name nginx \</span><br><span class="line">-e TZ=&quot;Asia/Shanghai&quot; \</span><br><span class="line">-d nginx:1.17.0</span><br></pre></td></tr></table></figure>
+<h4 id="在宿主机查看docker使用cpu、内存、网络、io情况"><a href="#在宿主机查看docker使用cpu、内存、网络、io情况" class="headerlink" title="在宿主机查看docker使用cpu、内存、网络、io情况"></a>在宿主机查看docker使用cpu、内存、网络、io情况</h4><p>1.查看指定容器情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stats $ContainerName(或者$ContainerId)</span><br></pre></td></tr></table></figure>
+<p>2.查看所有容器情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stats -a</span><br></pre></td></tr></table></figure>
+<h4 id="查看Docker磁盘使用情况"><a href="#查看Docker磁盘使用情况" class="headerlink" title="查看Docker磁盘使用情况"></a>查看Docker磁盘使用情况</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker system df</span><br></pre></td></tr></table></figure>
+<h4 id="进入Docker容器内部的bash"><a href="#进入Docker容器内部的bash" class="headerlink" title="进入Docker容器内部的bash"></a>进入Docker容器内部的bash</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it $ContainerName /bin/bash</span><br></pre></td></tr></table></figure>
+<h4 id="使用root帐号进入Docker容器内部"><a href="#使用root帐号进入Docker容器内部" class="headerlink" title="使用root帐号进入Docker容器内部"></a>使用root帐号进入Docker容器内部</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it --user root $ContainerName /bin/bash</span><br></pre></td></tr></table></figure>
+<h4 id="Docker创建外部网络"><a href="#Docker创建外部网络" class="headerlink" title="Docker创建外部网络"></a>Docker创建外部网络</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d bridge my-bridge-network</span><br></pre></td></tr></table></figure>
+<h4 id="修改Docker镜像的存放位置"><a href="#修改Docker镜像的存放位置" class="headerlink" title="修改Docker镜像的存放位置"></a>修改Docker镜像的存放位置</h4><p>1.查看Docker镜像的存放位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info | grep &quot;Docker Root Dir&quot;</span><br></pre></td></tr></table></figure>
+<p>2.关闭Docker服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker</span><br></pre></td></tr></table></figure>
+<p>3.移动目录到目标路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /var/lib/docker /mydata/docker</span><br></pre></td></tr></table></figure>
+<p>4.建立软连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /mydata/docker /var/lib/docker</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/01/docker_common/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql_ints" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>layout: post<br>title: mysql中int、bigint、smallint 和 tinyint的区别与长度的含义<br>date: 20120-03-27<br>comments: true<br>tags:</p>
+<ul>
+<li>mysql</li>
+</ul>
+<hr>
+<p>bigint</p>
+<p>从 -2^63 (-9223372036854775808) 到 2^63-1 (9223372036854775807) 的整型数据（所有数字）。存储大小为 8 个字节。</p>
+<p>P.S.bigint已经有长度了，在mysql建表中的length，只是用于显示的位数</p>
+<p>int</p>
+<p>从 -2^31 (-2,147,483,648) 到 2^31 – 1 (2,147,483,647) 的整型数据（所有数字）。存储大小为 4 个字节。int 的 SQL-92 同义字为integer。</p>
+<p>smallint</p>
+<p>从 -2^15 (-32,768) 到 2^15 – 1 (32,767) 的整型数据。存储大小为 2 个字节。</p>
+<p>tinyint</p>
+<p>从 0 到 255 的整型数据。存储大小为 1 字节。</p>
+<p>注释</p>
+<p>在支持整数值的地方支持bigint数据类型。但是，bigint用于某些特殊的情况，当整数值超过int数据类型支持的范围时，就可以采用bigint。在 SQL Server 中，int数据类型是主要的整数数据类型。</p>
+<p>在数据类型优先次序表中，bigint位于smallmoney和int之间。</p>
+<p>只有当参数表达式是bigint数据类型时，函数才返回bigint。SQL Server 不会自动将其它整数数据类型（tinyint、smallint和int）提升为bigint。</p>
+<p>int(M) 在 integer 数据类型中，M 表示最大显示宽度。在 int(M) 中，M 的值跟 int(M) 所占多少存储空间并无任何关系。和数字位数也无关系 int(3)、int(4)、int(8) 在磁盘上都是占用 4 btyes 的存储空间。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/27/mysql_ints/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-docker_command" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -531,507 +1216,9 @@
 
 
   
-    <article id="post-java_string" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/27/java_string/">java 字符串性能调优</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/27/java_string/" class="archive-article-date">
-  	<time datetime="2019-05-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="一、String-如何实现"><a href="#一、String-如何实现" class="headerlink" title="一、String 如何实现"></a>一、String 如何实现</h4><ul>
-<li><p>Java 1.6 以及以前版本，String 对象对 char 数组进行了封装、 char 数组、 偏移量 offset、字符串个数 count、哈希值。</p>
-</li>
-<li><p>Java 1.7 版本 到 1.8版本 char 数组、哈希值。这样的好处的是 String 对象占用的内存少了。String.substring 方法不再共享 char[] 数据了，解决内存泄漏问题。</p>
-</li>
-<li><p>从 Java 1.9 版本开始。使用byte[] 字段、coder。节约内存空间</p>
-</li>
-</ul>
-<h4 id="二、String-不可变性"><a href="#二、String-不可变性" class="headerlink" title="二、String 不可变性"></a>二、String 不可变性</h4><ul>
-<li><p>保证 String 对象的安全性。</p>
-</li>
-<li><p>保证 hash 属性值不会频繁变更，确保了唯一性。</p>
-</li>
-<li><p>可以实现字符串常量池。</p>
-</li>
-</ul>
-<h4 id="String-对象的优化"><a href="#String-对象的优化" class="headerlink" title="String 对象的优化"></a>String 对象的优化</h4><ul>
-<li><p>构建超大字符串；</p>
-<ul>
-<li>显示地使用 StringBuilder。</li>
-<li>多线程编程中使用 StringBuffer。</li>
-</ul>
-</li>
-<li><p>使用 String.intern 节省内存</p>
-</li>
-<li><p>使用 String.indexOf() 替代 spilt()</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/27/java_string/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-kotlin_h_apply" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/23/kotlin_h_apply/">kotlin 标准常用扩展函数的总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/23/kotlin_h_apply/" class="archive-article-date">
-  	<time datetime="2019-05-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.扩展函数本质上并不是对原先的类新增一个方法，它是以静态导入的方式来实现的。</p>
-<p>2.扩展函数跟原先的函数重名，并且参数都一样时，扩展函数会失效，调用的依旧是原先的函数。</p>
-<p>3.扩展函数不具备多态性。</p>
-<p>4.Java 也能调用 Kotlin 的扩展函数，可以把它当成是一个工具类来使用。</p>
-<p>kotlin. 常用扩展函数的使用</p>
-<ul>
-<li>with()</li>
-</ul>
-<p>with 是将某个对象作为函数的参数，在函数块内可以通过 this 指代该对象。在函数块内可以直接调用对象的方法或者属性。</p>
-<p>在 with 函数中还包含了 contract dsl，它是为编译器提供有关函数行为的附加信息，这有助于分析质量。 后面其他的扩展函数也有 contract dsl，在阅读源代码时可以忽略掉。</p>
-<ul>
-<li>apply()</li>
-</ul>
-<p>apply 函数是指在函数块内可以通过 this 指代该对象，返回值为该对象自己。在链式调用中，我们可以考虑使用它，从而不用破坏链式。</p>
-<ul>
-<li>also() </li>
-</ul>
-<p>also 是 Kotlin 1.1 新增的函数，类似于 apply 的功能。跟 apply 不同的是，also 在函数块内可以通过 it 指代该对象，返回值为该对象自己。</p>
-<ul>
-<li>run()</li>
-</ul>
-<p>run 函数类似于 apply 函数，但是 run 函数返回的是最后一行的值。</p>
-<ul>
-<li>let()</li>
-</ul>
-<p>let 函数把当前对象作为闭包的 it 参数，返回值是函数里面最后一行，或者指定 return。它看起来有点类似于 run 函数。</p>
-<p>总结 </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">函数</th>
-<th style="text-align:center">是否需要返回自己本身</th>
-<th style="text-align:right">传递参数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">apply</td>
-<td style="text-align:center">是</td>
-<td style="text-align:right">this</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">also</td>
-<td style="text-align:center">是</td>
-<td style="text-align:right">it</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">with</td>
-<td style="text-align:center">否</td>
-<td style="text-align:right">this</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">run</td>
-<td style="text-align:center">否/返回函数最后一行</td>
-<td style="text-align:right">this</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">let</td>
-<td style="text-align:center">否/返回函数最后一行</td>
-<td style="text-align:right">it</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kotlin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/23/kotlin_h_apply/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-rxjava_disposable_transformer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/23/rxjava_disposable_transformer/">Rxjava Disposable Transformer 的使用</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/23/rxjava_disposable_transformer/" class="archive-article-date">
-  	<time datetime="2019-05-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p>一、Disposable</p>
-<p>取消订阅 接口</p>
-<p>Rxjava 1.x: Subscription</p>
-<p>Rxjava 2.x: Disposable</p>
-<p>二、Transformer(转换器) 在 Rxjava 中的使用</p>
-<p>Transformer 能够将一个  Observable/Flowable/Single/Completable/Maybe 对象转换成另一个 Observable/Flowable/Single/Completable/Maybe 对象，与调用一系列的内联操作符一摸一样。</p>
-<p>三、与 compose 操作符结合使用</p>
-<p>compose 操作符能够从数据流中得到与原始的被观察者。当创建观察者是，compose操作符会立即执行，而不像其他的操作符需要在 onNext() 调用后才能执行。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/23/rxjava_disposable_transformer/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-rxjava_bp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/22/rxjava_bp/">Rxjava 背压</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/22/rxjava_bp/" class="archive-article-date">
-  	<time datetime="2019-05-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一、什么是背压</p>
-<p>指在异步的情况下，被观察者发送事件速度远快于观察者处理的速度，从而导致下游的 buffer 溢出，这种情况叫做背压。</p>
-<p>二、Rxjava 1.x背压策略</p>
-<p>缓存池只有16</p>
-<p>1.过滤限流<br>2.打包缓存<br>3.使用背压操作符</p>
-<p>三、Rxjava 2.x背压策略</p>
-<p>使用 Flowbale 支持背压，默认队列大小为 128，并且要求所有操作符强制支持背压。</p>
-<p>5种背压策略。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public enum BackpressureStrategy &#123;</span><br><span class="line">    /**</span><br><span class="line">     * OnNext events are written without any buffering or dropping.</span><br><span class="line">     * Downstream has to deal with any overflow.</span><br><span class="line">     * &lt;p&gt;Useful when one applies one of the custom-parameter onBackpressureXXX operators.</span><br><span class="line">     */</span><br><span class="line">    MISSING,</span><br><span class="line">    /**</span><br><span class="line">     * Signals a MissingBackpressureException in case the downstream can&apos;t keep up.</span><br><span class="line">     */</span><br><span class="line">    ERROR,</span><br><span class="line">    /**</span><br><span class="line">     * Buffers &lt;em&gt;all&lt;/em&gt; onNext values until the downstream consumes it.</span><br><span class="line">     */</span><br><span class="line">    BUFFER,</span><br><span class="line">    /**</span><br><span class="line">     * Drops the most recent onNext value if the downstream can&apos;t keep up.</span><br><span class="line">     */</span><br><span class="line">    DROP,</span><br><span class="line">    /**</span><br><span class="line">     * Keeps only the latest onNext value, overwriting any previous value if the</span><br><span class="line">     * downstream can&apos;t keep up.</span><br><span class="line">     */</span><br><span class="line">    LATEST</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>1.MISSING </p>
-<p>表示通过 Create 方法创建的 Flowable 没有指定背压策略，不会对通过 OnNext 发射的数据做缓存或丢弃处理，需要下游通过背压操作符(onBackpressureDrop()、onBackpressureLatest()、onBackpressureBuffer())指定背压策略。</p>
-<p>2.ERROR</p>
-<p>表示如果放入 Flowable 的一部缓存池中的数据超限了，则会抛出<br>Caused by: io.reactivex.exceptions.MissingBackpressureException: create: could not emit value due to lack of requests<br>异常。</p>
-<p>3.BUFFER</p>
-<p>表示 Flowable 异步缓存池同 Observable的一样没固定大小，可以无限制添加数据，不会抛出 MissingBackpressureException 异常，但会导致 oom；</p>
-<p>4.DROP</p>
-<p>表示如果Flow的异步缓存池满了，则会丢掉将要放入缓存池中的数据。</p>
-<p>5.LATEST</p>
-<p>表示缓存池满了，则会丢掉将要放入缓存池中的数据。跟DROP一样，不同的是不管缓存池的状态如何。LATEST 都会将最后一条数据强行放入缓存池中。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/22/rxjava_bp/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-rxjava_flatMap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/20/rxjava_flatMap/">Rxjava 并行编程</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/20/rxjava_flatMap/" class="archive-article-date">
-  	<time datetime="2019-05-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p>并行不是并发，也不是同步，更不是异步。</p>
-<p>并发是指一个处理器处理多个任务。并行是多个处理器或者是多核的处理器同时处理多个不同的任务。并行是同时发生的多个并发事件，具有并发的含义，而并发则不一定是并行。</p>
-<p>一、借助 flatMap 实现并行</p>
-<p>二、通过 Round-Robin 算法实现并行</p>
-<p>三、ParallelFlowabe 实现并行</p>
-<p>四、ParallelFlowabe 与 Scheduler</p>
-<p>五、ParallelFlowabe 的操作符</p>
-<p>六、ParallelFlowabe 和 Flowable.flatMap 比较</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/20/rxjava_flatMap/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1315,6 +1502,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
             
             <div class="clearfix"></div>

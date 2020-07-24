@@ -139,6 +139,504 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java_string" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/27/java_string/">java 字符串性能调优</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/27/java_string/" class="archive-article-date">
+  	<time datetime="2019-05-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一、String-如何实现"><a href="#一、String-如何实现" class="headerlink" title="一、String 如何实现"></a>一、String 如何实现</h4><ul>
+<li><p>Java 1.6 以及以前版本，String 对象对 char 数组进行了封装、 char 数组、 偏移量 offset、字符串个数 count、哈希值。</p>
+</li>
+<li><p>Java 1.7 版本 到 1.8版本 char 数组、哈希值。这样的好处的是 String 对象占用的内存少了。String.substring 方法不再共享 char[] 数据了，解决内存泄漏问题。</p>
+</li>
+<li><p>从 Java 1.9 版本开始。使用byte[] 字段、coder。节约内存空间</p>
+</li>
+</ul>
+<h4 id="二、String-不可变性"><a href="#二、String-不可变性" class="headerlink" title="二、String 不可变性"></a>二、String 不可变性</h4><ul>
+<li><p>保证 String 对象的安全性。</p>
+</li>
+<li><p>保证 hash 属性值不会频繁变更，确保了唯一性。</p>
+</li>
+<li><p>可以实现字符串常量池。</p>
+</li>
+</ul>
+<h4 id="String-对象的优化"><a href="#String-对象的优化" class="headerlink" title="String 对象的优化"></a>String 对象的优化</h4><ul>
+<li><p>构建超大字符串；</p>
+<ul>
+<li>显示地使用 StringBuilder。</li>
+<li>多线程编程中使用 StringBuffer。</li>
+</ul>
+</li>
+<li><p>使用 String.intern 节省内存</p>
+</li>
+<li><p>使用 String.indexOf() 替代 spilt()</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/27/java_string/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-kotlin_h_apply" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/23/kotlin_h_apply/">kotlin 标准常用扩展函数的总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/23/kotlin_h_apply/" class="archive-article-date">
+  	<time datetime="2019-05-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.扩展函数本质上并不是对原先的类新增一个方法，它是以静态导入的方式来实现的。</p>
+<p>2.扩展函数跟原先的函数重名，并且参数都一样时，扩展函数会失效，调用的依旧是原先的函数。</p>
+<p>3.扩展函数不具备多态性。</p>
+<p>4.Java 也能调用 Kotlin 的扩展函数，可以把它当成是一个工具类来使用。</p>
+<p>kotlin. 常用扩展函数的使用</p>
+<ul>
+<li>with()</li>
+</ul>
+<p>with 是将某个对象作为函数的参数，在函数块内可以通过 this 指代该对象。在函数块内可以直接调用对象的方法或者属性。</p>
+<p>在 with 函数中还包含了 contract dsl，它是为编译器提供有关函数行为的附加信息，这有助于分析质量。 后面其他的扩展函数也有 contract dsl，在阅读源代码时可以忽略掉。</p>
+<ul>
+<li>apply()</li>
+</ul>
+<p>apply 函数是指在函数块内可以通过 this 指代该对象，返回值为该对象自己。在链式调用中，我们可以考虑使用它，从而不用破坏链式。</p>
+<ul>
+<li>also() </li>
+</ul>
+<p>also 是 Kotlin 1.1 新增的函数，类似于 apply 的功能。跟 apply 不同的是，also 在函数块内可以通过 it 指代该对象，返回值为该对象自己。</p>
+<ul>
+<li>run()</li>
+</ul>
+<p>run 函数类似于 apply 函数，但是 run 函数返回的是最后一行的值。</p>
+<ul>
+<li>let()</li>
+</ul>
+<p>let 函数把当前对象作为闭包的 it 参数，返回值是函数里面最后一行，或者指定 return。它看起来有点类似于 run 函数。</p>
+<p>总结 </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:center">是否需要返回自己本身</th>
+<th style="text-align:right">传递参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">apply</td>
+<td style="text-align:center">是</td>
+<td style="text-align:right">this</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">also</td>
+<td style="text-align:center">是</td>
+<td style="text-align:right">it</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">with</td>
+<td style="text-align:center">否</td>
+<td style="text-align:right">this</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">run</td>
+<td style="text-align:center">否/返回函数最后一行</td>
+<td style="text-align:right">this</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">let</td>
+<td style="text-align:center">否/返回函数最后一行</td>
+<td style="text-align:right">it</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kotlin</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/23/kotlin_h_apply/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-rxjava_disposable_transformer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/23/rxjava_disposable_transformer/">Rxjava Disposable Transformer 的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/23/rxjava_disposable_transformer/" class="archive-article-date">
+  	<time datetime="2019-05-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>一、Disposable</p>
+<p>取消订阅 接口</p>
+<p>Rxjava 1.x: Subscription</p>
+<p>Rxjava 2.x: Disposable</p>
+<p>二、Transformer(转换器) 在 Rxjava 中的使用</p>
+<p>Transformer 能够将一个  Observable/Flowable/Single/Completable/Maybe 对象转换成另一个 Observable/Flowable/Single/Completable/Maybe 对象，与调用一系列的内联操作符一摸一样。</p>
+<p>三、与 compose 操作符结合使用</p>
+<p>compose 操作符能够从数据流中得到与原始的被观察者。当创建观察者是，compose操作符会立即执行，而不像其他的操作符需要在 onNext() 调用后才能执行。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/23/rxjava_disposable_transformer/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-rxjava_bp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/22/rxjava_bp/">Rxjava 背压</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/22/rxjava_bp/" class="archive-article-date">
+  	<time datetime="2019-05-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、什么是背压</p>
+<p>指在异步的情况下，被观察者发送事件速度远快于观察者处理的速度，从而导致下游的 buffer 溢出，这种情况叫做背压。</p>
+<p>二、Rxjava 1.x背压策略</p>
+<p>缓存池只有16</p>
+<p>1.过滤限流<br>2.打包缓存<br>3.使用背压操作符</p>
+<p>三、Rxjava 2.x背压策略</p>
+<p>使用 Flowbale 支持背压，默认队列大小为 128，并且要求所有操作符强制支持背压。</p>
+<p>5种背压策略。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public enum BackpressureStrategy &#123;</span><br><span class="line">    /**</span><br><span class="line">     * OnNext events are written without any buffering or dropping.</span><br><span class="line">     * Downstream has to deal with any overflow.</span><br><span class="line">     * &lt;p&gt;Useful when one applies one of the custom-parameter onBackpressureXXX operators.</span><br><span class="line">     */</span><br><span class="line">    MISSING,</span><br><span class="line">    /**</span><br><span class="line">     * Signals a MissingBackpressureException in case the downstream can&apos;t keep up.</span><br><span class="line">     */</span><br><span class="line">    ERROR,</span><br><span class="line">    /**</span><br><span class="line">     * Buffers &lt;em&gt;all&lt;/em&gt; onNext values until the downstream consumes it.</span><br><span class="line">     */</span><br><span class="line">    BUFFER,</span><br><span class="line">    /**</span><br><span class="line">     * Drops the most recent onNext value if the downstream can&apos;t keep up.</span><br><span class="line">     */</span><br><span class="line">    DROP,</span><br><span class="line">    /**</span><br><span class="line">     * Keeps only the latest onNext value, overwriting any previous value if the</span><br><span class="line">     * downstream can&apos;t keep up.</span><br><span class="line">     */</span><br><span class="line">    LATEST</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1.MISSING </p>
+<p>表示通过 Create 方法创建的 Flowable 没有指定背压策略，不会对通过 OnNext 发射的数据做缓存或丢弃处理，需要下游通过背压操作符(onBackpressureDrop()、onBackpressureLatest()、onBackpressureBuffer())指定背压策略。</p>
+<p>2.ERROR</p>
+<p>表示如果放入 Flowable 的一部缓存池中的数据超限了，则会抛出<br>Caused by: io.reactivex.exceptions.MissingBackpressureException: create: could not emit value due to lack of requests<br>异常。</p>
+<p>3.BUFFER</p>
+<p>表示 Flowable 异步缓存池同 Observable的一样没固定大小，可以无限制添加数据，不会抛出 MissingBackpressureException 异常，但会导致 oom；</p>
+<p>4.DROP</p>
+<p>表示如果Flow的异步缓存池满了，则会丢掉将要放入缓存池中的数据。</p>
+<p>5.LATEST</p>
+<p>表示缓存池满了，则会丢掉将要放入缓存池中的数据。跟DROP一样，不同的是不管缓存池的状态如何。LATEST 都会将最后一条数据强行放入缓存池中。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/22/rxjava_bp/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-rxjava_flatMap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/20/rxjava_flatMap/">Rxjava 并行编程</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/20/rxjava_flatMap/" class="archive-article-date">
+  	<time datetime="2019-05-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>并行不是并发，也不是同步，更不是异步。</p>
+<p>并发是指一个处理器处理多个任务。并行是多个处理器或者是多核的处理器同时处理多个不同的任务。并行是同时发生的多个并发事件，具有并发的含义，而并发则不一定是并行。</p>
+<p>一、借助 flatMap 实现并行</p>
+<p>二、通过 Round-Robin 算法实现并行</p>
+<p>三、ParallelFlowabe 实现并行</p>
+<p>四、ParallelFlowabe 与 Scheduler</p>
+<p>五、ParallelFlowabe 的操作符</p>
+<p>六、ParallelFlowabe 和 Flowable.flatMap 比较</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/20/rxjava_flatMap/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-rxjava_schedulers" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -696,574 +1194,9 @@
 
 
   
-    <article id="post-android_compress_img" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/android_compress_img/">Android 图片压缩</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/09/android_compress_img/" class="archive-article-date">
-  	<time datetime="2019-05-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-质量压缩"><a href="#1-质量压缩" class="headerlink" title="1.质量压缩"></a>1.质量压缩</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">compress(CompressFormat format, int quality, OutputStream stream)</span><br><span class="line"></span><br><span class="line">该方法接受三个参数，其含义分别如下：</span><br><span class="line"></span><br><span class="line">format：枚举，有三个选项 JPEG, PNG 和 WEBP，表示图片的格式；</span><br><span class="line">quality：图片的质量，取值在 [0,100] 之间，表示图片质量，越大，图片的质量越高；</span><br><span class="line">stream：一个输出流，通常是我们压缩结果输出的文件的流</span><br></pre></td></tr></table></figure>
-<h4 id="2-邻近采样"><a href="#2-邻近采样" class="headerlink" title="2.邻近采样"></a>2.邻近采样</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 获取原始图片的尺寸</span><br><span class="line">BitmapFactory.Options options = new BitmapFactory.Options();</span><br><span class="line">options.inJustDecodeBounds = true;</span><br><span class="line">options.inSampleSize = 1;</span><br><span class="line">BitmapFactory.decodeStream(srcImg.open(), null, options);</span><br><span class="line">this.srcWidth = options.outWidth;</span><br><span class="line">this.srcHeight = options.outHeight;</span><br><span class="line"></span><br><span class="line">// 进行图片加载，此时会将图片加载到内存中</span><br><span class="line">options.inJustDecodeBounds = false;</span><br><span class="line">options.inSampleSize = calInSampleSize();</span><br><span class="line">Bitmap bitmap = BitmapFactory.decodeStream(srcImg.open(), null, options);</span><br><span class="line"></span><br><span class="line">这里主要分成两个步骤，它们各自的含义是：</span><br><span class="line"></span><br><span class="line">1. 先通过设置 Options 的 inJustDecodeBounds 为 true，来加载图片，以得到图片的尺寸信息。此时图片不会被加载到内存中，所以不会造成 OOM，同时我们可以通过 Options 得到原图的尺寸信息。</span><br><span class="line"></span><br><span class="line">2. 根据上一步中得到的图片的尺寸信息，计算一个 inSampleSize，然后将 inJustDecodeBounds 设置为 false，以加载采样之后的图片到内存中。</span><br><span class="line"></span><br><span class="line">关于 inSampleSize 需要简单说明一下：</span><br><span class="line"></span><br><span class="line">inSampleSize 代表压缩后的图像一个像素点代表了原来的几个像素点，例如 inSampleSize 为 4，则压缩后的图像的宽高是原来的 1/4，像素点数是原来的 1/16，inSampleSize 一般会选择 2 的指数，如果不是 2 的指数，内部计算的时候也会向 2 的指数靠近。</span><br><span class="line"></span><br><span class="line">所以，实际使用过程中，我们会通过明确指定 inSampleSize 为 2 的指数，来避免内部计算导致的不确定性。</span><br></pre></td></tr></table></figure>
-<h4 id="3-双线性采样"><a href="#3-双线性采样" class="headerlink" title="3.双线性采样"></a>3.双线性采样</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.blue_red);</span><br><span class="line">Matrix matrix = new Matrix();</span><br><span class="line">matrix.setScale(0.5f, 0.5f);</span><br><span class="line">Bitmap sclaedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth()/2, bitmap.getHeight()/2, matrix, true);</span><br></pre></td></tr></table></figure>
-<h4 id="总结-结合三种压缩方式使用"><a href="#总结-结合三种压缩方式使用" class="headerlink" title="总结-结合三种压缩方式使用"></a>总结-结合三种压缩方式使用</h4><p>1.使用邻近采样对原始的图片进行采样，将图片控制到比目标尺寸稍大的大小，防止 OOM；</p>
-<p>2.使用双线性采样对图片的尺寸进行压缩，控制图片的尺寸为目标的大小；</p>
-<p>3.对上述两个步骤之后得到的图片 Bitmap 进行质量压缩，并将其输出到磁盘上。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/android_compress_img/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-rxjava_create" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/07/rxjava_create/">RxJava 创建操作符</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/07/rxjava_create/" class="archive-article-date">
-  	<time datetime="2019-05-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>create() 使用一个函数从头创建一个 Observable。</p>
-<p>just() 将一个或多个对象转换成发射这个或这些对象的一个 Observable。</p>
-<p>from() 将一个 Iterable、一个Future或者一个数组转换成 Observable。</p>
-<p>defer() 只有当订阅者订阅才创建 Observable，为每个订阅创建一个新的 Observable。</p>
-<p>range() 创建一个发射指定范围的整数序列的 Observable。</p>
-<p>interval() 创建一个按照指定的时间间隔发射整数序列的 Observable。</p>
-<p>timer() 创建一个在给定的延时之后发射单个数据的 Observable。</p>
-<p>empty() 创建一个什么都不做的直接通知完成的 Observable。</p>
-<p>error() 创建一个什么都不做的直接通知错误的 Observable。</p>
-<p>never() 创建什么都不发射任何数据的 Observable。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/07/rxjava_create/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-rxjava_observable" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/01/rxjava_observable/">RxJava 五种观察者模式</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/01/rxjava_observable/" class="archive-article-date">
-  	<time datetime="2019-04-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <table>
-<thead>
-<tr>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Observable</td>
-<td>能够发射0或者n个数据，并以成功或错误的事件终止</td>
-</tr>
-<tr>
-<td>Flowable</td>
-<td>能够发射0或者n个数据，并以成功或错误的事件终止，支持背压，可以控制数据源的发射的速度</td>
-</tr>
-<tr>
-<td>Single</td>
-<td>只能发射单个数据或错误事件</td>
-</tr>
-<tr>
-<td>Completable</td>
-<td>从来不发射数据，只处理 onComplete 和onError 事件。可以看成Rx的Runnable</td>
-</tr>
-<tr>
-<td>Maybe</td>
-<td>能够发射 0 或者 1个数据，要么成功，要么失败。</td>
-</tr>
-</tbody>
-</table>
-<h4 id="do操作符"><a href="#do操作符" class="headerlink" title="do操作符"></a>do操作符</h4><blockquote>
-<p>给 Observable 的生命周期的各个阶段加上一些列的回调操作</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Observable.just(&quot;Hello&quot;)</span><br><span class="line">             .doOnNext(new Consumer&lt;String&gt;() &#123;</span><br><span class="line">                 @Override</span><br><span class="line">                 public void accept(String s) throws Exception &#123;</span><br><span class="line">                     System.out.println(&quot;doOnNext&quot;+s);</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;)</span><br><span class="line">             .doAfterNext(new Consumer&lt;String&gt;() &#123;</span><br><span class="line">                 @Override</span><br><span class="line">                 public void accept(String s) throws Exception &#123;</span><br><span class="line">                     System.out.println(&quot;doAfterNext&quot;+s);</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;)</span><br><span class="line">             .doOnComplete(new Action() &#123;</span><br><span class="line">                 @Override</span><br><span class="line">                 public void run() throws Exception &#123;</span><br><span class="line">                     System.out.println(&quot;doOnComplete&quot;);</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;)</span><br><span class="line">             .doOnSubscribe(new Consumer&lt;Disposable&gt;() &#123;</span><br><span class="line">                 @Override</span><br><span class="line">                 public void accept(Disposable disposable) throws Exception &#123;</span><br><span class="line">                     System.out.println(&quot;doOnSubscribe&quot;);</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;)</span><br><span class="line">             .doAfterTerminate(new Action() &#123;</span><br><span class="line">                 @Override</span><br><span class="line">                 public void run() throws Exception &#123;</span><br><span class="line">                     System.out.println(&quot;doAfterTerminate&quot;);</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;)</span><br><span class="line">             .doFinally(new Action() &#123;</span><br><span class="line">                 @Override</span><br><span class="line">                 public void run() throws Exception &#123;</span><br><span class="line">                     System.out.println(&quot;doFinally&quot;);</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;)</span><br><span class="line">             .doOnEach(new Consumer&lt;Notification&lt;String&gt;&gt;() &#123;</span><br><span class="line">                 @Override</span><br><span class="line">                 public void accept(Notification&lt;String&gt; stringNotification) throws Exception &#123;</span><br><span class="line">                     System.out.println(&quot;doOnEach:isOnNext:&quot;</span><br><span class="line">                             +stringNotification.isOnNext()+&quot;isOnError&quot;</span><br><span class="line">                             +stringNotification.isOnError()+&quot;isOnComplete:&quot;</span><br><span class="line">                             +stringNotification.isOnComplete());</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;)</span><br><span class="line">             .doOnLifecycle(new Consumer&lt;Disposable&gt;() &#123;</span><br><span class="line">                                @Override</span><br><span class="line">                                public void accept(Disposable disposable) throws Exception &#123;</span><br><span class="line">                                    System.out.println(&quot;doOnLifecycle:&quot; + disposable.isDisposed());</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;, new Action() &#123;</span><br><span class="line">                                @Override</span><br><span class="line">                                public void run() throws Exception &#123;</span><br><span class="line">                                    System.out.println(&quot;doOnLifecycle run&quot; );</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">             )</span><br><span class="line">     .subscribe(new Consumer&lt;String&gt;() &#123;</span><br><span class="line">         @Override</span><br><span class="line">         public void accept(String s) throws Exception &#123;</span><br><span class="line">             System.out.println(&quot;收到消息：&quot;+s);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure>
-<p>执行结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">doOnSubscribe</span><br><span class="line">doOnLifecycle:false</span><br><span class="line">doOnNext:Hello</span><br><span class="line">doOnEach=isOnNext:true  isOnError:false  isOnComplete:false</span><br><span class="line">收到消息:Hello</span><br><span class="line">doAfterNext:Hello</span><br><span class="line">doOnComplete</span><br><span class="line">doOnEach=isOnNext:false  isOnError:false  isOnComplete:true</span><br><span class="line">doFinally</span><br><span class="line">doAfterTerminate</span><br></pre></td></tr></table></figure>
-<h4 id="do-操作符的用途"><a href="#do-操作符的用途" class="headerlink" title="do 操作符的用途"></a>do 操作符的用途</h4><table>
-<thead>
-<tr>
-<th>操作符</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>doOnSubscribe</td>
-<td>一旦观察者订阅了 Observable，它就会被调用</td>
-</tr>
-<tr>
-<td>doOnLifecycle</td>
-<td>可以在观察者订阅之后，设置是否取消订阅</td>
-</tr>
-<tr>
-<td>doOnNext</td>
-<td>它产生的Observable 每发射一项数据就会调用它一次，它的Consumer接受发射的数据项。一般用于在 subscribe 之前对数据进行处理。</td>
-</tr>
-<tr>
-<td>doOnEach</td>
-<td>它产生的 Observable 每发射一项数据就会调用它一次,不仅包括 OnNext，还包括onError 和 OnComplete</td>
-</tr>
-<tr>
-<td>doAfterNext</td>
-<td>在 onNext 之后执行，而 doOnNext 是在onNext之前执行</td>
-</tr>
-<tr>
-<td>doOnComplete</td>
-<td>当它产生的 Observable 在正常终止调用 onComplete 时会被调用</td>
-</tr>
-<tr>
-<td>doFinally</td>
-<td>在当它产生的 Observable 终止之后会被调用，无论是正常终止还是异常终止，doFinally优先于 doAfterTerminate 的调用</td>
-</tr>
-<tr>
-<td>doAfterTerminate</td>
-<td>注册一个 Action,当 Observable 调用 onComplete 或 onError 时触发</td>
-</tr>
-</tbody>
-</table>
-<h4 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h4><table>
-<thead>
-<tr>
-<th>Subject</th>
-<th>发射行为</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AsyncSubject</td>
-<td>不论订阅发生在什么时候，只发射最后一个数据</td>
-</tr>
-<tr>
-<td>BehaviorSubject</td>
-<td>发送订阅之前的一个数据和订阅之后的全部数据</td>
-</tr>
-<tr>
-<td>ReplaySubject</td>
-<td>不论订阅发生在什么时候，都发射全部数据</td>
-</tr>
-<tr>
-<td>PublishSubject</td>
-<td>发送订阅之后全部数据</td>
-</tr>
-</tbody>
-</table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/01/rxjava_observable/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-a_video_study" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/17/a_video_study/">Android 音视频开发学习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/17/a_video_study/" class="archive-article-date">
-  	<time datetime="2019-04-16T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h4><p>c/c++</p>
-<p>arm neon 汇编</p>
-<h4 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h4><p>ffmpeg:</p>
-<p>libyuv:</p>
-<p>libx264/libx265</p>
-<p>opengl es</p>
-<p>exoplayer/ijkplayer </p>
-<h4 id="音视频特效开发"><a href="#音视频特效开发" class="headerlink" title="音视频特效开发"></a>音视频特效开发</h4><p>color look up table</p>
-<p>shadertoy 学习</p>
-<h4 id="薯片编码压缩算法"><a href="#薯片编码压缩算法" class="headerlink" title="薯片编码压缩算法"></a>薯片编码压缩算法</h4>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">learn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/17/a_video_study/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-zc_up" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/08/zc_up/">从 0 开始做增长</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/08/zc_up/" class="archive-article-date">
-  	<time datetime="2019-04-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="14-提炼用户差异，发现增长契机"><a href="#14-提炼用户差异，发现增长契机" class="headerlink" title="14 提炼用户差异，发现增长契机"></a>14 提炼用户差异，发现增长契机</h4><ul>
-<li><p>用户不是越多越好，要越对越好。</p>
-</li>
-<li><p>用户特征不是越细越好，一针见血地阐明差异性才能落实到后续工作。</p>
-</li>
-<li><p>行走范围就是你的世界，世界越小，就越难吸引到用户。</p>
-</li>
-<li><p>调研报告重点突出之前未意识到的，或和预期差别较大的点。</p>
-</li>
-<li><p>信息是用来对比的，不是来罗列，在不断对比中找到关键信息。</p>
-</li>
-</ul>
-<h4 id="15-挖掘产品优势，打破增长瓶颈"><a href="#15-挖掘产品优势，打破增长瓶颈" class="headerlink" title="15 挖掘产品优势，打破增长瓶颈"></a>15 挖掘产品优势，打破增长瓶颈</h4><ul>
-<li><p>找到正确的人，提供对应的产品或服务，成就独特的产品定位。</p>
-</li>
-<li><p>找到定位，发挥优势是关键，抓住产品增长的那块木板。</p>
-</li>
-<li><p>长板的条件：和竞品比有绝对优势；对用户来说是雪中送碳；能提升北极星指标。</p>
-</li>
-<li><p>找到产品的最长板，借用户的眼，从用户需求出发、戏份场景找竞品对比、专家视角。</p>
-</li>
-<li><p>在差异性对比的过程中，竞品的选择是非常重要的。视野要够大。</p>
-</li>
-</ul>
-<h4 id="16-定位营销差异，抢占用户心智"><a href="#16-定位营销差异，抢占用户心智" class="headerlink" title="16 定位营销差异，抢占用户心智"></a>16 定位营销差异，抢占用户心智</h4><p>营销定位的三级大炮</p>
-<ul>
-<li><p>超出产品范围看优势</p>
-<ul>
-<li>例如政企类产品、教育类、大众消费类渠道广、容易购买。</li>
-</ul>
-</li>
-<li><p>碰瓷对手凸显优势</p>
-<ul>
-<li>天猫优势就是商品多、价格便宜、平台模式优势。</li>
-<li>京东比拼商品数量和价格不如天猫，自营模式的缺陷。自营模式保证了产品品质和快递速度。</li>
-<li>老牌的可口可乐和新的百事可乐，老牌的产品优势是经典、深得人心，对应缺点是不够新潮，百事可乐顺势用一句广告语“新一代的选择”成功占据了市场。</li>
-</ul>
-</li>
-<li><p>帮产品找到 “最佳人设”</p>
-<ul>
-<li>“老干部”、”好爸爸”、”少女感”</li>
-<li>对产品不熟可以从事实角度、如”在线一对一的英语教学”</li>
-<li>对产品已经很熟了，不知道和竞品的关系时候，如”充电5分钟，通话 2 小时”。</li>
-<li>产品已经站稳脚跟了，可以从情感角度打动用户，如”照亮你的美”。</li>
-</ul>
-</li>
-</ul>
-<p>1.做增长不能只看 “套路”，找到定位才是最本质的。</p>
-<p>2.营销定位的终极目标就是抢占用户心智，不仅创造蓝海更要加固壁垒。</p>
-<p>3.营销定位的三级大炮：公司整体优势或独特的商业模式、核心产品优势、目标人群。</p>
-<p>4.产品在不同发展阶段，可以选择不同的营销表达方式。</p>
-<h4 id="17-一级方向：找到增长爆破点"><a href="#17-一级方向：找到增长爆破点" class="headerlink" title="17 一级方向：找到增长爆破点"></a>17 一级方向：找到增长爆破点</h4><ul>
-<li><p>定位不仅立足当下，更考虑未来。</p>
-</li>
-<li><p>根据产品的不同成长阶段，定位也需要适当做出调整。</p>
-</li>
-<li><p>一级方向是企业当前最关注的事情，它少而精、高瞻远曙和定位息息相关。</p>
-</li>
-<li><p>一级方向画布：阶段、关注点、北极星直白哦，用户分类、画像、定位、一级方向。</p>
-</li>
-</ul>
-<h4 id="18-B-端产品如何调研"><a href="#18-B-端产品如何调研" class="headerlink" title="18 B 端产品如何调研"></a>18 B 端产品如何调研</h4><ul>
-<li><p>B 端产品同样需要调研。虽然产品数量有限，同样需要增长。</p>
-</li>
-<li><p>需要深刻了解特定行业，该产品和行业对比差异。</p>
-</li>
-<li><p>C 端以用户为中心，B端以产品以业务为中心。</p>
-</li>
-<li><p>B 端产品一级画布：北极星指标、客户画像、产品画像、定位、业务计划及优先级。</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/08/zc_up/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1547,6 +1480,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
             
             <div class="clearfix"></div>
