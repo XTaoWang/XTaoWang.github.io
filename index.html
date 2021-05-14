@@ -139,6 +139,148 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-tools_miui_bl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/30/tools_miui_bl/">小米手机解锁 BL</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/30/tools_miui_bl/" class="archive-article-date">
+  	<time datetime="2020-12-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>打开开发者选像</p>
+</li>
+<li><p>进入“设置 -&gt; 开发者选项 -&gt; 设备解锁状态”中绑定账号和设备；</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">以下必须</span><br><span class="line"></span><br><span class="line">1.手机需要插入 SIM 卡.(需要当前 SIM 卡手机号码的账号，15天插卡期限。）</span><br><span class="line">2.关闭手机 WLAN  并打开手机数据链接，确保手机可使用数据联网</span><br><span class="line">3.需要小米账号和设备绑定。</span><br><span class="line">4.绑定成功后，请访问 MIUI 官网获取解锁工具（解锁需要自电脑上进行操作）。</span><br><span class="line">下载地址 http://www.miui.com/unlock/index.html</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载 小米官网解锁工具</li>
+</ul>
+<p><code>`
+1.解压提取小米解锁工具/找到文件 miflash_unlock.exe 
+2.解锁工具里登陆小米账号。(如果没有驱动，点击右上角设置图标，安装驱动。) 长按 电源开关 + 音量-  进入 FASTBOOT 系统。
+3.验证是否支持解锁.
+4.解锁</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MIUI BL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/30/tools_miui_bl/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-web_click_to_app_deep_links" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="h5页面点击判断是否安装app并打开，否则跳转下载页面"><a href="#h5页面点击判断是否安装app并打开，否则跳转下载页面" class="headerlink" title="h5页面点击判断是否安装app并打开，否则跳转下载页面"></a>h5页面点击判断是否安装app并打开，否则跳转下载页面</h2><p>layout: post<br>title: h5页面点击判断是否安装app并打开，否则跳转下载页面<br>date: 2020-11-16<br>comments: true<br>tags:</p>
+<ul>
+<li>Web</li>
+</ul>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">        &lt;title&gt;&lt;/title&gt;</span><br><span class="line">        &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">            body&#123;</span><br><span class="line">                padding-top: 30px;</span><br><span class="line">            &#125;</span><br><span class="line">            .open-app &#123;</span><br><span class="line">                margin: 30px;</span><br><span class="line">                border-radius: 5px;</span><br><span class="line">                padding: 10px 20px;</span><br><span class="line">                border: 1px solid #ccc;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">        &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line"></span><br><span class="line">        &lt;a class=&quot;open-app&quot;&gt;click me to app&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">        &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line"></span><br><span class="line">            $(&apos;a&apos;).click(function() &#123;</span><br><span class="line">                var u = navigator.userAgent;</span><br><span class="line">                var isWeixin = u.toLowerCase().indexOf(&apos;micromessenger&apos;) !== -1; // 微信内</span><br><span class="line">                var isAndroid = u.indexOf(&apos;Android&apos;) &gt; -1 || u.indexOf(&apos;Linux&apos;) &gt; -1; //android终端</span><br><span class="line">                var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端</span><br><span class="line"></span><br><span class="line">                // 微信内</span><br><span class="line">                if(isWeixin) &#123;</span><br><span class="line">                    alert(&apos;请在浏览器上打开&apos;)</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    //android端</span><br><span class="line">                    if (isAndroid) &#123;</span><br><span class="line">                        //安卓app的scheme协议</span><br><span class="line">                        window.location.href = &apos;cgjapp://com.962360?channel=sdx&amp;sodexo_openid=0b8e1c6512398233&apos;;</span><br><span class="line">&lt;!--                        setTimeout(function()&#123;--&gt;</span><br><span class="line">&lt;!--                            let hidden = window.document.hidden || window.document.mozHidden || window.document.msHidden ||window.document.webkitHidden--&gt;</span><br><span class="line">&lt;!--                            if(typeof hidden ==&quot;undefined&quot; || hidden ==false)&#123;--&gt;</span><br><span class="line">&lt;!--                                //下载地址--&gt;</span><br><span class="line">&lt;!--                                window.location.href =&quot;https:\/\/weixin.962360.com\/androidNew.php&quot;;--&gt;</span><br><span class="line">&lt;!--                            &#125;--&gt;</span><br><span class="line">&lt;!--                        &#125;, 2000);--&gt;</span><br><span class="line">                    // 修复 Andorid 多任务，应用会进入后台，则既会跳转 app，也会跳转下载页面。</span><br><span class="line">                    // 设置一个运行间隔 20ms，总计运行 100 次的定时器，如果页面一直处于前台，则 100 次跑完，</span><br><span class="line">                    // 总耗时与 100x20=2000ms 不会有太大差异，但页面在后台运行时，此时间会明显超过 2000ms。</span><br><span class="line">                    // 可以利用这一点来实现是否成功打开 APP 检测及回调。</span><br><span class="line">                    var _clickTime = +new Date()</span><br><span class="line">                    function check(elsTime) &#123;</span><br><span class="line">                      if (elsTime &gt; 3000 || document.hidden || document.webkitHidden) &#123;</span><br><span class="line">                      &#125; else &#123;</span><br><span class="line">                        window.location.href = &quot;https:\/\/weixin.962360.com\/androidNew.php&quot;</span><br><span class="line">                      &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    //启动间隔20ms运行的定时器，并检测累计消耗时间是否超过3000ms，超过则结束</span><br><span class="line">                    var _count = 0,</span><br><span class="line">                      intHandle</span><br><span class="line">                    intHandle = setInterval(function() &#123;</span><br><span class="line">                      _count++</span><br><span class="line">                      var elsTime = +new Date() - _clickTime</span><br><span class="line">                      if (_count &gt;= 100 || elsTime &gt; 3000) &#123;</span><br><span class="line">                        clearInterval(intHandle)</span><br><span class="line">                        check(elsTime)</span><br><span class="line">                      &#125;</span><br><span class="line">                    &#125;, 20)</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                    //ios端</span><br><span class="line">                    if (isIOS) &#123;</span><br><span class="line">                        //ios的scheme协议</span><br><span class="line">                        window.location.href = &apos;cgjapp://com.962360?channel=sdx&amp;sodexo_openid=0b8e1c6512398233&apos;</span><br><span class="line">                        setTimeout(function()&#123;</span><br><span class="line">                            let hidden = window.document.hidden || window.document.mozHidden || window.document.msHidden ||window.document.webkitHidden </span><br><span class="line">                            if(typeof hidden ==&quot;undefined&quot; || hidden ==false)&#123;</span><br><span class="line">                                //App store下载地址</span><br><span class="line">                                window.location = &quot;https://apps.apple.com/cn/app/%E5%85%89%E6%98%8E%E8%8F%9C%E7%AE%A1%E5%AE%B6/id808101535&quot;;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;, 2000);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;);</span><br><span class="line">        &lt;/script&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Ios 在 Safari打不开该网页，因为网址无效</span><br><span class="line">打开此链接，会自动打开一个这样的链接: kitapps://xxx</span><br><span class="line">在应用内对此是有处理的，而在Safari浏览器中，浏览器是不认识的，所以会报图中所示的提示。</span><br><span class="line">暂时没管。</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://suanmei.github.io/2018/08/23/h5_call_app/</span><br><span class="line"></span><br><span class="line">https://github.com/chenyinkai/blog/issues/19</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/16/web_click_to_app_deep_links/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-linux_firewall" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1064,158 +1206,6 @@
 
 
   
-    <article id="post-docker_mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/docker_mysql/">docker 之 mysql</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/01/docker_mysql/" class="archive-article-date">
-  	<time datetime="2019-11-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// mysql</span><br><span class="line">https://hub.docker.com/_/mysql</span><br><span class="line">docker pull mysql</span><br><span class="line"></span><br><span class="line">// 运行 mysql 镜像</span><br><span class="line">// --name 容器名字</span><br><span class="line">// -e 为设置执行时的环境变量</span><br><span class="line">// -d 为设置镜像，镜像名:版本</span><br><span class="line">//-p 3306:3306   表示在这个容器中使用3306端口(第二个)映射到本机的端口号也为3306(第一个)</span><br><span class="line"></span><br><span class="line">docker run --name first-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest </span><br><span class="line">--default-authentication-plugin=mysql_native_password</span><br><span class="line">--lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">其他参数参数说明</span><br><span class="line">--restart=always 跟随docker启动</span><br><span class="line">--privileged=true 容器root用户享有主机root用户权限</span><br><span class="line">-v 映射主机路径到容器</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=root 设置root用户密码</span><br><span class="line">-d 后台启动</span><br><span class="line">--lower_case_table_names=1 设置表名参数名等忽略大小写</span><br><span class="line"></span><br><span class="line">// 查看当前所有的数据库</span><br><span class="line">show databases;</span><br></pre></td></tr></table></figure>
-<h4 id="进入数据库-bash"><a href="#进入数据库-bash" class="headerlink" title="进入数据库 bash"></a>进入数据库 bash</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it first-mysql /bin/bash</span><br></pre></td></tr></table></figure>
-<h4 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line"></span><br><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED WITH mysql_native_password BY &apos;yourpassword&apos;;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-<h4 id="进入我们的容器"><a href="#进入我们的容器" class="headerlink" title="进入我们的容器"></a>进入我们的容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 两种进入容器区别 </span><br><span class="line">1.attach 进入</span><br><span class="line">命令进入container（容器）有一个缺点，那就是每次从container中退出到前台时，container也跟着退出了。 </span><br><span class="line">2.exec -it</span><br><span class="line">退出container时，让container仍然在后台运行着</span><br><span class="line"></span><br><span class="line">docker attach &lt;ContainerID&gt;</span><br><span class="line"></span><br><span class="line">docker exec -it goofy_almeida /bin/bash</span><br></pre></td></tr></table></figure>
-<h3 id="mysql-问题记录"><a href="#mysql-问题记录" class="headerlink" title="mysql 问题记录"></a>mysql 问题记录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">问题1. MySQL said: Authentication plugin </span><br><span class="line">&apos;caching_sha2_password&apos; cannot be loaded: dlopen(/usr/</span><br><span class="line">local/lib/plugin/caching_sha2_password.so, 2):  解决</span><br><span class="line"></span><br><span class="line">// 进入数据库执行</span><br><span class="line">ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH </span><br><span class="line">mysql_native_password BY &apos;123456&apos;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">问题二.解决MAC电脑Sequel Pro encountered an unexpected error 问题</span><br><span class="line"></span><br><span class="line">下载 https://sequelpro.com/test-builds 版本</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/01/docker_mysql/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-wx_mini_count" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/wx_mini_count/">小程序之一些业务上总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/01/wx_mini_count/" class="archive-article-date">
-  	<time datetime="2019-11-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="关于小程序登录"><a href="#关于小程序登录" class="headerlink" title="关于小程序登录"></a>关于小程序登录</h4><p><img src="https://res.wx.qq.com/wxdoc/dist/assets/img/api-login.2fcc9f35.jpg" alt></p>
-<h4 id="UnionID-机制说明"><a href="#UnionID-机制说明" class="headerlink" title="UnionID 机制说明"></a>UnionID 机制说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），可</span><br><span class="line">通过 UnionID 来区分用户的唯一性，因为只要是同一个微信开放平台帐号</span><br><span class="line">下的移动应用、网站应用和公众帐号（包括小程序），用户的 UnionID 是</span><br><span class="line">唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，unionid是相同的。</span><br><span class="line"></span><br><span class="line">//  获取渠道 (需要申请开发平台 300块哪个)</span><br><span class="line"></span><br><span class="line">1.调用接口 wx.getUserInfo，从解密数据中获取 UnionID。注意本接口需要用户授权，请</span><br><span class="line">开发者妥善处理用户拒绝授权后的情况。</span><br><span class="line"></span><br><span class="line">2.如果开发者帐号下存在同主体的公众号，并且该用户已经关注了该公众号。开发者可以直接通</span><br><span class="line">过 wx.login + code2Session 获取到该用户 UnionID，无须用户再次授权。</span><br><span class="line"></span><br><span class="line">3.如果开发者帐号下存在同主体的公众号或移动应用，并且该用户已经授权登录过该公众号或移</span><br><span class="line">动应用。开发者也可以直接通过 wx.login + code2Session 获取到该用户 UnionID ，无</span><br><span class="line">须用户再次授权。</span><br><span class="line"></span><br><span class="line">4.用户在小程序（暂不支持小游戏）中支付完成后，开发者可以直接通过getPaidUnionId接</span><br><span class="line">口获取该用户的 UnionID，无需用户授权。注意：本接口仅在用户支付完成后的5分钟内有效，</span><br><span class="line"></span><br><span class="line">请开发者妥善处理。</span><br><span class="line"></span><br><span class="line">5.小程序端调用云函数时，如果开发者帐号下存在同主体的公众号，并且该用户已经关注了该公</span><br><span class="line">众号，可在云函数中通过 cloud.getWXContext 获取 UnionID。</span><br><span class="line"></span><br><span class="line">6.小程序端调用云函数时，如果开发者帐号下存在同主体的公众号或移动应用，并且该用户已经</span><br><span class="line">授权登录过该公众号或移动应用，也可在云函数中通过 cloud.getWXContext 获取 UnionID。</span><br><span class="line"></span><br><span class="line">微信开放平台绑定小程序流程</span><br><span class="line">登录微信开放平台 — 管理中心 — 小程序 — 绑定小程序</span><br></pre></td></tr></table></figure>
-<h4 id="关于模版消息关于-formid-获取"><a href="#关于模版消息关于-formid-获取" class="headerlink" title="关于模版消息关于 formid  获取"></a>关于模版消息关于 formid  获取</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 支付</span><br><span class="line">当用户在小程序内完成过支付行为，可允许开发者向用户在7天内推送有限</span><br><span class="line">条数的模板消息（1次支付可下发3条，多次支付下发条数独立，互相不影</span><br><span class="line">响）</span><br><span class="line"></span><br><span class="line">2. 提交表单</span><br><span class="line"></span><br><span class="line">当用户在小程序内发生过提交表单行为且该表单声明为要发模板消息的，开</span><br><span class="line">发者需要向用户提供服务时，可允许开发者向用户在7天内推送有限条数的</span><br><span class="line">模板消息（1次提交表单可下发1条，多次提交下发条数独立，相互不影响）</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/01/wx_mini_count/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1230,7 +1220,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Torrent
+    		&copy; 2021 Torrent
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1309,19 +1299,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Tools</a>
+                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+                <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1341,23 +1327,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">plugins</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Butter Knife</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Bitmap</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Drawable</a>
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">plugins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1382,6 +1360,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RxJava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Butter Knife</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Drawable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1445,11 +1435,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1461,11 +1451,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">aboutme</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color3">aboutme</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1477,6 +1467,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Plugins</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">dev-tools</a>
               </li>
              
@@ -1485,11 +1479,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Plugins</a>
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
+                <a href="javascript:void(0)" class="js-tag color3">MIUI BL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1502,10 +1500,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
             
             <div class="clearfix"></div>

@@ -139,6 +139,165 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-a_notchphoneutils" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/10/a_notchphoneutils/">Android 刘海屏适配方案记录</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/10/a_notchphoneutils/" class="archive-article-date">
+  	<time datetime="2018-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>华为P20 pro、 vivo X21、OPPO R15 、小米8</p>
+<ul>
+<li><p>有状态栏app（也就是不需要全屏的app）无需适配</p>
+</li>
+<li><p>无状态栏全屏显示的app 需要进行刘海屏的适配</p>
+</li>
+</ul>
+<p><a href="https://dev.mi.com/console/doc/detail?pId=1293" target="_blank" rel="noopener">小米 MIUI Notch 屏 Android O 适配说明</a></p>
+<p><a href="https://devcenter-test.huawei.com/consumer/cn/devservice/doc/50114" target="_blank" rel="noopener">华为刘海屏手机安卓O版本适配指导</a></p>
+<p><a href="https://open.oppomobile.com/service/message/detail?id=61876" target="_blank" rel="noopener">OPPO凹形屏适配说明</a></p>
+<p><a href="https://dev.vivo.com.cn/documentCenter/doc/103" target="_blank" rel="noopener">vivo全面屏应用适配指南 </a></p>
+<p><a href="https://developer.android.com/about/versions/pie/android-9.0#cutout" target="_blank" rel="noopener">Android P</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/10/a_notchphoneutils/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-a_kotlin_czf_infix" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/31/a_kotlin_czf_infix/">Kotlin 操作符 和 中缀表达式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/31/a_kotlin_czf_infix/" class="archive-article-date">
+  	<time datetime="2018-07-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line"></span><br><span class="line">    val user = User(&quot;name&quot;, 12)</span><br><span class="line">//    val (name, age) = user</span><br><span class="line">//    println(name)</span><br><span class="line">//    println(age)</span><br><span class="line"></span><br><span class="line">//    val map = mapOf&lt;String, String&gt;(&quot;key&quot; to &quot;key&quot;, &quot;value&quot; to &quot;value&quot;)</span><br><span class="line">//    for((k ,v) in map)&#123;</span><br><span class="line">//        println(&quot;$k--$v&quot;)</span><br><span class="line">//    &#125;</span><br><span class="line"></span><br><span class="line">    // let 和 run 都回返回闭包的结果，区别 let 有闭包参数，而 run 没必报参数</span><br><span class="line">    val letResult = user.let &#123; &quot;let::$&#123;it.javaClass&#125;&quot;  &#125;</span><br><span class="line">    println(letResult)</span><br><span class="line">    val runResult = user.run &#123; &quot;run::$&#123;this.javaClass&#125;&quot;  &#125;</span><br><span class="line">    println(runResult)</span><br><span class="line"></span><br><span class="line">    // also 与 apply 都不返回闭包的执行结果区别 also 有闭包参数，而 apply  没必报参数</span><br><span class="line">    user.also &#123;</span><br><span class="line">        println(&quot;also ::$&#123;it.javaClass&#125;&quot; )</span><br><span class="line">    &#125;.apply &#123;</span><br><span class="line">        println(&quot;apply ::$&#123;this.javaClass&#125;&quot; )</span><br><span class="line">    &#125;.name = &quot;hello&quot;</span><br><span class="line"></span><br><span class="line">    // 1.2 新增作用域函数</span><br><span class="line">    // takeIf 和 takeUnless 返回一个判断结果 为 false 时 takeIf 返回为空</span><br><span class="line">    // takeUnless  和 takeIf 相反 为 true 时  返回为空</span><br><span class="line">    user.takeIf &#123; it.name.length &gt; 0 &#125;?.also &#123; println(&quot;姓名为 $&#123;it.name&#125;&quot;) &#125;?: println(&quot;姓名为空&quot;)</span><br><span class="line">    user.takeUnless &#123; it.name.length &gt; 0 &#125;?.also &#123; println(&quot;姓名为空&quot;)&#125;?:println(&quot;姓名为 $&#123;user.name&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    // 重复执行当前函数</span><br><span class="line">    repeat(5)&#123;</span><br><span class="line">        println(user.name)</span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    with(user)&#123;</span><br><span class="line">        this.name = &quot;with&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="中缀表达式"><a href="#中缀表达式" class="headerlink" title="中缀表达式"></a>中缀表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">// 密封类</span><br><span class="line">sealed class CompareResult&#123;</span><br><span class="line">    object LESS : CompareResult()&#123;</span><br><span class="line">        override fun toString(): String &#123;</span><br><span class="line">            return &quot;小于&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    object MORE : CompareResult()&#123;</span><br><span class="line">        override fun toString(): String &#123;</span><br><span class="line">            return &quot;大于&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    object EQUAL : CompareResult()&#123;</span><br><span class="line">        override fun toString(): String &#123;</span><br><span class="line">            return &quot;等于&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">infix fun Int.vs(num: Int) : CompareResult =</span><br><span class="line">        if(this - num &lt; 0)&#123;</span><br><span class="line">            CompareResult.LESS</span><br><span class="line">        &#125;else if(this - num &gt; 0)&#123;</span><br><span class="line">            CompareResult.MORE</span><br><span class="line">        &#125; else&#123;</span><br><span class="line">            CompareResult.EQUAL</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">infix fun Double.vs(num: Int) : CompareResult =</span><br><span class="line">        if(this - num &lt; 0)&#123;</span><br><span class="line">            CompareResult.LESS</span><br><span class="line">        &#125;else if(this - num &gt; 0)&#123;</span><br><span class="line">            CompareResult.MORE</span><br><span class="line">        &#125; else&#123;</span><br><span class="line">            CompareResult.EQUAL</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">infix fun Long.vs(num: Int) : CompareResult =</span><br><span class="line">        if(this - num &lt; 0)&#123;</span><br><span class="line">            CompareResult.LESS</span><br><span class="line">        &#125;else if(this - num &gt; 0)&#123;</span><br><span class="line">            CompareResult.MORE</span><br><span class="line">        &#125; else&#123;</span><br><span class="line">            CompareResult.EQUAL</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line">    println(5 vs 6)</span><br><span class="line">    println(7L vs 6)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/31/a_kotlin_czf_infix/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-kotlin_for" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -183,79 +342,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/07/27/kotlin_for/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-a_kotlin_jg" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/25/a_kotlin_jg/">Kotlin 结构</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/25/a_kotlin_jg/" class="archive-article-date">
-  	<time datetime="2018-07-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class User(var name: String, var age: Int)&#123;</span><br><span class="line"></span><br><span class="line">    //   operator 将一个函数标记为重载一个操作符或者实现一个约定</span><br><span class="line">    operator fun component1() = name</span><br><span class="line"></span><br><span class="line">    operator fun component2() = age</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line"></span><br><span class="line">    val user = User(&quot;name&quot;, 12)</span><br><span class="line">    val (name, age) = user</span><br><span class="line">    println(name)</span><br><span class="line">    println(age)</span><br><span class="line"></span><br><span class="line">    val map = mapOf&lt;String, String&gt;(&quot;key&quot; to &quot;key&quot;, &quot;value&quot; to &quot;value&quot;)</span><br><span class="line">    for((k ,v) in map)&#123;</span><br><span class="line">        println(&quot;$k--$v&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/25/a_kotlin_jg/">展开全文 >></a>
         </p>
       
 
@@ -331,6 +417,79 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/07/25/a_thread_ways/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-a_kotlin_jg" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/25/a_kotlin_jg/">Kotlin 结构</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/25/a_kotlin_jg/" class="archive-article-date">
+  	<time datetime="2018-07-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class User(var name: String, var age: Int)&#123;</span><br><span class="line"></span><br><span class="line">    //   operator 将一个函数标记为重载一个操作符或者实现一个约定</span><br><span class="line">    operator fun component1() = name</span><br><span class="line"></span><br><span class="line">    operator fun component2() = age</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line"></span><br><span class="line">    val user = User(&quot;name&quot;, 12)</span><br><span class="line">    val (name, age) = user</span><br><span class="line">    println(name)</span><br><span class="line">    println(age)</span><br><span class="line"></span><br><span class="line">    val map = mapOf&lt;String, String&gt;(&quot;key&quot; to &quot;key&quot;, &quot;value&quot; to &quot;value&quot;)</span><br><span class="line">    for((k ,v) in map)&#123;</span><br><span class="line">        println(&quot;$k--$v&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/25/a_kotlin_jg/">展开全文 >></a>
         </p>
       
 
@@ -785,152 +944,6 @@ public int pop(){
 
 
   
-    <article id="post-leetcode_prime" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/22/leetcode_prime/">LeetCode 204. 计数质数</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/22/leetcode_prime/" class="archive-article-date">
-  	<time datetime="2017-02-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">  * 判断小于n的所有正整数是不是素数;</span><br><span class="line">  * */</span><br><span class="line"> public static int countPrimes(int n) &#123;</span><br><span class="line">     if (n == 0) return 0;</span><br><span class="line">     int ans = 0;</span><br><span class="line">     for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">         ans += isPrime(i);</span><br><span class="line">     &#125;</span><br><span class="line">     return ans;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">  * 判断一个数是否是质数;</span><br><span class="line">  *</span><br><span class="line">  * */</span><br><span class="line"> public static int isPrime(int n) &#123;</span><br><span class="line"></span><br><span class="line">     if(n &lt; 2 )&#123;</span><br><span class="line">         return 0;</span><br><span class="line">     &#125;</span><br><span class="line">     for(int i = 2; i * i &lt;= n; i++) &#123;</span><br><span class="line">         if(n % i == 0) &#123;</span><br><span class="line">             return 0;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     return 1;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/22/leetcode_prime/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode_power_of_three" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/20/leetcode_power_of_three/">326. Power of Three</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/20/leetcode_power_of_three/" class="archive-article-date">
-  	<time datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 不停地除以3，看最后的余数是否为1;要注意考虑输入是负数和0的情况;</span><br><span class="line"> * */</span><br><span class="line">public static boolean isPowerOfThree1(int n) &#123;</span><br><span class="line"></span><br><span class="line">    while (n &gt; 0 &amp;&amp; n % 3 == 0) &#123;</span><br><span class="line">        n /= 3;</span><br><span class="line">    &#125;</span><br><span class="line">    return n == 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 任何一个3的x次方一定能被int型里最大的3的x次方整除;</span><br><span class="line"> * */</span><br><span class="line">public static boolean isPowerOfThree2(int n)&#123;</span><br><span class="line"></span><br><span class="line">    return  (n &gt; 0 &amp;&amp; 1162261467 % n == 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *  如果n是3的x次方，那么以3为低对数后一定是一个整数;</span><br><span class="line"> * */</span><br><span class="line">public static boolean isPowerOfThree3(int n) &#123;</span><br><span class="line">    return (n &gt; 0 &amp;&amp; (Math.log10(n) / Math.log10(3)) % 1 == 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/20/leetcode_power_of_three/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -945,7 +958,7 @@ public int pop(){
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Torrent
+    		&copy; 2021 Torrent
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1024,19 +1037,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Tools</a>
+                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+                <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1056,23 +1065,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">plugins</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Butter Knife</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Bitmap</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Drawable</a>
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">plugins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1097,6 +1098,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RxJava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Butter Knife</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Drawable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1160,11 +1173,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1176,11 +1189,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">aboutme</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color3">aboutme</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1192,6 +1205,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Plugins</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">dev-tools</a>
               </li>
              
@@ -1200,11 +1217,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Plugins</a>
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
+                <a href="javascript:void(0)" class="js-tag color3">MIUI BL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1217,10 +1238,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
             
             <div class="clearfix"></div>

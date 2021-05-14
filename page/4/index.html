@@ -139,6 +139,217 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-book_ block_way" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/13/book_ block_way/">读书笔记 - Android 卡顿分析方法与工具汇总</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/13/book_ block_way/" class="archive-article-date">
+  	<time datetime="2018-12-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>cpu 、内存 、磁盘 io</p>
+<p>cpu 时间 分为 用户时间和系统时间</p>
+<p>查看某个进程cpu 使用情况</p>
+<h3 id="cpu-使用率"><a href="#cpu-使用率" class="headerlink" title="cpu 使用率"></a>cpu 使用率</h3><p>60%以上表示处于繁忙 不会长期30%</p>
+<p>top 命令 查看哪个进程cpu 消耗大户</p>
+<p>vmstat 命令动态监视操作系统的虚拟内存和cpu活动 </p>
+<p>strace 命令 可以跟踪某个进程中的所有系统调用</p>
+<h3 id="cpu-饱和度"><a href="#cpu-饱和度" class="headerlink" title="cpu 饱和度"></a>cpu 饱和度</h3><p>线程排队等待cpu的情况，cpu负载情况；</p>
+<h3 id="Android-卡顿工具排查工具"><a href="#Android-卡顿工具排查工具" class="headerlink" title="Android 卡顿工具排查工具"></a>Android 卡顿工具排查工具</h3><p>两个流派</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.instrument流派，获取一段时间内所有函数的调用过程，可以通过分析这段时间内的函数调</span><br><span class="line">用工程，再进一步分析待优化的点；</span><br><span class="line"></span><br><span class="line">2.sample 流派，有选择性或者采用抽样方式观察某些函数的调用过程，可以通过这些有限的信</span><br><span class="line">息推测出可疑点，在做细化分析；</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>原理</th>
+<th>优缺点</th>
+<th>流派</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Traceview</td>
+<td>Android Runtime函数调用的enent事件，将函数运行的耗时和调用关系写入 trace 文件中</td>
+<td>开销过大 5.0后 使用基本样式进行分析</td>
+<td>instrument</td>
+</tr>
+<tr>
+<td>Nanoscope</td>
+<td>直接修改 Android虚拟机源码，在ArtMethod 执行入口和执行结束为止增加埋点代码，将信息先写入内存，在统一生成结果文件</td>
+<td>需要ROM,只支持 6p ,默认只支持主线程采集</td>
+<td>instrument</td>
+</tr>
+<tr>
+<td>systrace</td>
+<td>4.1版本新增的性能分析工具，通常跟踪系统 io操作，cpu负载，suface渲染，gc等事件，利用 Linux的ftrace 调试工具，在系统关键位置添加性能监控埋点</td>
+<td>开销低，不支持应用程序代码的耗时分析</td>
+<td>sample</td>
+</tr>
+<tr>
+<td>Simpleperf</td>
+<td>5.0 新增，利用cpu的性能监控单元pum提供的硬件perf事件，可以看到所有代码的耗时，同时封装了systrace的监控功能</td>
+<td>性能开销低</td>
+<td>sample</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Android-Studio-3-2-集成的分析工具"><a href="#Android-Studio-3-2-集成的分析工具" class="headerlink" title="Android Studio 3.2 集成的分析工具"></a>Android Studio 3.2 集成的分析工具</h3><h4 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h4><p>Sample Java Methods</p>
+<p>Trace Java Methods</p>
+<p>Trace System Calls </p>
+<p>SampleNative </p>
+<h4 id="展示方式"><a href="#展示方式" class="headerlink" title="展示方式"></a>展示方式</h4><p>Call Chart</p>
+<p>Flame Chart</p>
+<h3 id="卡顿监控"><a href="#卡顿监控" class="headerlink" title="卡顿监控"></a>卡顿监控</h3><p>1.使用消息队列</p>
+<p>2.插桩</p>
+<p>3.Profilo (Facebook 开源)</p>
+<h3 id="其他监控"><a href="#其他监控" class="headerlink" title="其他监控"></a>其他监控</h3><p>1.帧率</p>
+<p>2.生命周期监控</p>
+<p>3.线程监控</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Android 开发高手课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/13/book_ block_way/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-book_memory" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/11/book_memory/">读书笔记 - 内存优化着手点</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/11/book_memory/" class="archive-article-date">
+  	<time datetime="2018-12-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-设备分级"><a href="#1-设备分级" class="headerlink" title="1.设备分级"></a>1.设备分级</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">设备分级 device-year-class策略对设备分级</span><br><span class="line"></span><br><span class="line">缓存管理</span><br><span class="line"></span><br><span class="line">进程模型</span><br><span class="line"></span><br><span class="line">安装包大小</span><br></pre></td></tr></table></figure>
+<h3 id="2-Bitmap-优化"><a href="#2-Bitmap-优化" class="headerlink" title="2.Bitmap 优化"></a>2.Bitmap 优化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">统一图片库</span><br><span class="line"></span><br><span class="line">统一监控</span><br><span class="line">1.大图片监控</span><br><span class="line"></span><br><span class="line">2.重复图片监控</span><br><span class="line"></span><br><span class="line">3.图片总内存</span><br></pre></td></tr></table></figure>
+<h3 id="3-内存泄漏"><a href="#3-内存泄漏" class="headerlink" title="3.内存泄漏"></a>3.内存泄漏</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Java 内存泄漏</span><br><span class="line"></span><br><span class="line">OOM 监控</span><br><span class="line"></span><br><span class="line">Native 内存泄漏监控</span><br><span class="line"></span><br><span class="line">针对无法重编 so 的情况</span><br><span class="line"></span><br><span class="line">针对可重编的 so 情况</span><br></pre></td></tr></table></figure>
+<p>##内存监控</p>
+<p>1.采集方式</p>
+<p>2.计算指标（内存异常率、触顶率）</p>
+<p>3.GC 监控</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Android 开发高手课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/11/book_memory/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-data_books" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -788,165 +999,6 @@
 
 
   
-    <article id="post-a_notchphoneutils" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/10/a_notchphoneutils/">Android 刘海屏适配方案记录</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/10/a_notchphoneutils/" class="archive-article-date">
-  	<time datetime="2018-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>华为P20 pro、 vivo X21、OPPO R15 、小米8</p>
-<ul>
-<li><p>有状态栏app（也就是不需要全屏的app）无需适配</p>
-</li>
-<li><p>无状态栏全屏显示的app 需要进行刘海屏的适配</p>
-</li>
-</ul>
-<p><a href="https://dev.mi.com/console/doc/detail?pId=1293" target="_blank" rel="noopener">小米 MIUI Notch 屏 Android O 适配说明</a></p>
-<p><a href="https://devcenter-test.huawei.com/consumer/cn/devservice/doc/50114" target="_blank" rel="noopener">华为刘海屏手机安卓O版本适配指导</a></p>
-<p><a href="https://open.oppomobile.com/service/message/detail?id=61876" target="_blank" rel="noopener">OPPO凹形屏适配说明</a></p>
-<p><a href="https://dev.vivo.com.cn/documentCenter/doc/103" target="_blank" rel="noopener">vivo全面屏应用适配指南 </a></p>
-<p><a href="https://developer.android.com/about/versions/pie/android-9.0#cutout" target="_blank" rel="noopener">Android P</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/10/a_notchphoneutils/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-a_kotlin_czf_infix" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/31/a_kotlin_czf_infix/">Kotlin 操作符 和 中缀表达式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/31/a_kotlin_czf_infix/" class="archive-article-date">
-  	<time datetime="2018-07-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line"></span><br><span class="line">    val user = User(&quot;name&quot;, 12)</span><br><span class="line">//    val (name, age) = user</span><br><span class="line">//    println(name)</span><br><span class="line">//    println(age)</span><br><span class="line"></span><br><span class="line">//    val map = mapOf&lt;String, String&gt;(&quot;key&quot; to &quot;key&quot;, &quot;value&quot; to &quot;value&quot;)</span><br><span class="line">//    for((k ,v) in map)&#123;</span><br><span class="line">//        println(&quot;$k--$v&quot;)</span><br><span class="line">//    &#125;</span><br><span class="line"></span><br><span class="line">    // let 和 run 都回返回闭包的结果，区别 let 有闭包参数，而 run 没必报参数</span><br><span class="line">    val letResult = user.let &#123; &quot;let::$&#123;it.javaClass&#125;&quot;  &#125;</span><br><span class="line">    println(letResult)</span><br><span class="line">    val runResult = user.run &#123; &quot;run::$&#123;this.javaClass&#125;&quot;  &#125;</span><br><span class="line">    println(runResult)</span><br><span class="line"></span><br><span class="line">    // also 与 apply 都不返回闭包的执行结果区别 also 有闭包参数，而 apply  没必报参数</span><br><span class="line">    user.also &#123;</span><br><span class="line">        println(&quot;also ::$&#123;it.javaClass&#125;&quot; )</span><br><span class="line">    &#125;.apply &#123;</span><br><span class="line">        println(&quot;apply ::$&#123;this.javaClass&#125;&quot; )</span><br><span class="line">    &#125;.name = &quot;hello&quot;</span><br><span class="line"></span><br><span class="line">    // 1.2 新增作用域函数</span><br><span class="line">    // takeIf 和 takeUnless 返回一个判断结果 为 false 时 takeIf 返回为空</span><br><span class="line">    // takeUnless  和 takeIf 相反 为 true 时  返回为空</span><br><span class="line">    user.takeIf &#123; it.name.length &gt; 0 &#125;?.also &#123; println(&quot;姓名为 $&#123;it.name&#125;&quot;) &#125;?: println(&quot;姓名为空&quot;)</span><br><span class="line">    user.takeUnless &#123; it.name.length &gt; 0 &#125;?.also &#123; println(&quot;姓名为空&quot;)&#125;?:println(&quot;姓名为 $&#123;user.name&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    // 重复执行当前函数</span><br><span class="line">    repeat(5)&#123;</span><br><span class="line">        println(user.name)</span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    with(user)&#123;</span><br><span class="line">        this.name = &quot;with&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="中缀表达式"><a href="#中缀表达式" class="headerlink" title="中缀表达式"></a>中缀表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">// 密封类</span><br><span class="line">sealed class CompareResult&#123;</span><br><span class="line">    object LESS : CompareResult()&#123;</span><br><span class="line">        override fun toString(): String &#123;</span><br><span class="line">            return &quot;小于&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    object MORE : CompareResult()&#123;</span><br><span class="line">        override fun toString(): String &#123;</span><br><span class="line">            return &quot;大于&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    object EQUAL : CompareResult()&#123;</span><br><span class="line">        override fun toString(): String &#123;</span><br><span class="line">            return &quot;等于&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">infix fun Int.vs(num: Int) : CompareResult =</span><br><span class="line">        if(this - num &lt; 0)&#123;</span><br><span class="line">            CompareResult.LESS</span><br><span class="line">        &#125;else if(this - num &gt; 0)&#123;</span><br><span class="line">            CompareResult.MORE</span><br><span class="line">        &#125; else&#123;</span><br><span class="line">            CompareResult.EQUAL</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">infix fun Double.vs(num: Int) : CompareResult =</span><br><span class="line">        if(this - num &lt; 0)&#123;</span><br><span class="line">            CompareResult.LESS</span><br><span class="line">        &#125;else if(this - num &gt; 0)&#123;</span><br><span class="line">            CompareResult.MORE</span><br><span class="line">        &#125; else&#123;</span><br><span class="line">            CompareResult.EQUAL</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">infix fun Long.vs(num: Int) : CompareResult =</span><br><span class="line">        if(this - num &lt; 0)&#123;</span><br><span class="line">            CompareResult.LESS</span><br><span class="line">        &#125;else if(this - num &gt; 0)&#123;</span><br><span class="line">            CompareResult.MORE</span><br><span class="line">        &#125; else&#123;</span><br><span class="line">            CompareResult.EQUAL</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line">    println(5 vs 6)</span><br><span class="line">    println(7L vs 6)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/31/a_kotlin_czf_infix/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -961,7 +1013,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Torrent
+    		&copy; 2021 Torrent
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1040,19 +1092,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Tools</a>
+                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+                <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1072,23 +1120,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">plugins</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Butter Knife</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Bitmap</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Drawable</a>
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">plugins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1113,6 +1153,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RxJava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Butter Knife</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Drawable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1176,11 +1228,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1192,11 +1244,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">aboutme</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color3">aboutme</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1208,6 +1260,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Plugins</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">dev-tools</a>
               </li>
              
@@ -1216,11 +1272,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Plugins</a>
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
+                <a href="javascript:void(0)" class="js-tag color3">MIUI BL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1233,10 +1293,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
             
             <div class="clearfix"></div>

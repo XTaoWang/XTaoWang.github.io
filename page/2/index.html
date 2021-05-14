@@ -139,6 +139,158 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-docker_mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/01/docker_mysql/">docker 之 mysql</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/01/docker_mysql/" class="archive-article-date">
+  	<time datetime="2019-11-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// mysql</span><br><span class="line">https://hub.docker.com/_/mysql</span><br><span class="line">docker pull mysql</span><br><span class="line"></span><br><span class="line">// 运行 mysql 镜像</span><br><span class="line">// --name 容器名字</span><br><span class="line">// -e 为设置执行时的环境变量</span><br><span class="line">// -d 为设置镜像，镜像名:版本</span><br><span class="line">//-p 3306:3306   表示在这个容器中使用3306端口(第二个)映射到本机的端口号也为3306(第一个)</span><br><span class="line"></span><br><span class="line">docker run --name first-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest </span><br><span class="line">--default-authentication-plugin=mysql_native_password</span><br><span class="line">--lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">其他参数参数说明</span><br><span class="line">--restart=always 跟随docker启动</span><br><span class="line">--privileged=true 容器root用户享有主机root用户权限</span><br><span class="line">-v 映射主机路径到容器</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=root 设置root用户密码</span><br><span class="line">-d 后台启动</span><br><span class="line">--lower_case_table_names=1 设置表名参数名等忽略大小写</span><br><span class="line"></span><br><span class="line">// 查看当前所有的数据库</span><br><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+<h4 id="进入数据库-bash"><a href="#进入数据库-bash" class="headerlink" title="进入数据库 bash"></a>进入数据库 bash</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it first-mysql /bin/bash</span><br></pre></td></tr></table></figure>
+<h4 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line"></span><br><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED WITH mysql_native_password BY &apos;yourpassword&apos;;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<h4 id="进入我们的容器"><a href="#进入我们的容器" class="headerlink" title="进入我们的容器"></a>进入我们的容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 两种进入容器区别 </span><br><span class="line">1.attach 进入</span><br><span class="line">命令进入container（容器）有一个缺点，那就是每次从container中退出到前台时，container也跟着退出了。 </span><br><span class="line">2.exec -it</span><br><span class="line">退出container时，让container仍然在后台运行着</span><br><span class="line"></span><br><span class="line">docker attach &lt;ContainerID&gt;</span><br><span class="line"></span><br><span class="line">docker exec -it goofy_almeida /bin/bash</span><br></pre></td></tr></table></figure>
+<h3 id="mysql-问题记录"><a href="#mysql-问题记录" class="headerlink" title="mysql 问题记录"></a>mysql 问题记录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">问题1. MySQL said: Authentication plugin </span><br><span class="line">&apos;caching_sha2_password&apos; cannot be loaded: dlopen(/usr/</span><br><span class="line">local/lib/plugin/caching_sha2_password.so, 2):  解决</span><br><span class="line"></span><br><span class="line">// 进入数据库执行</span><br><span class="line">ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH </span><br><span class="line">mysql_native_password BY &apos;123456&apos;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">问题二.解决MAC电脑Sequel Pro encountered an unexpected error 问题</span><br><span class="line"></span><br><span class="line">下载 https://sequelpro.com/test-builds 版本</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/01/docker_mysql/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-wx_mini_count" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/01/wx_mini_count/">小程序之一些业务上总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/01/wx_mini_count/" class="archive-article-date">
+  	<time datetime="2019-11-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="关于小程序登录"><a href="#关于小程序登录" class="headerlink" title="关于小程序登录"></a>关于小程序登录</h4><p><img src="https://res.wx.qq.com/wxdoc/dist/assets/img/api-login.2fcc9f35.jpg" alt></p>
+<h4 id="UnionID-机制说明"><a href="#UnionID-机制说明" class="headerlink" title="UnionID 机制说明"></a>UnionID 机制说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），可</span><br><span class="line">通过 UnionID 来区分用户的唯一性，因为只要是同一个微信开放平台帐号</span><br><span class="line">下的移动应用、网站应用和公众帐号（包括小程序），用户的 UnionID 是</span><br><span class="line">唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，unionid是相同的。</span><br><span class="line"></span><br><span class="line">//  获取渠道 (需要申请开发平台 300块哪个)</span><br><span class="line"></span><br><span class="line">1.调用接口 wx.getUserInfo，从解密数据中获取 UnionID。注意本接口需要用户授权，请</span><br><span class="line">开发者妥善处理用户拒绝授权后的情况。</span><br><span class="line"></span><br><span class="line">2.如果开发者帐号下存在同主体的公众号，并且该用户已经关注了该公众号。开发者可以直接通</span><br><span class="line">过 wx.login + code2Session 获取到该用户 UnionID，无须用户再次授权。</span><br><span class="line"></span><br><span class="line">3.如果开发者帐号下存在同主体的公众号或移动应用，并且该用户已经授权登录过该公众号或移</span><br><span class="line">动应用。开发者也可以直接通过 wx.login + code2Session 获取到该用户 UnionID ，无</span><br><span class="line">须用户再次授权。</span><br><span class="line"></span><br><span class="line">4.用户在小程序（暂不支持小游戏）中支付完成后，开发者可以直接通过getPaidUnionId接</span><br><span class="line">口获取该用户的 UnionID，无需用户授权。注意：本接口仅在用户支付完成后的5分钟内有效，</span><br><span class="line"></span><br><span class="line">请开发者妥善处理。</span><br><span class="line"></span><br><span class="line">5.小程序端调用云函数时，如果开发者帐号下存在同主体的公众号，并且该用户已经关注了该公</span><br><span class="line">众号，可在云函数中通过 cloud.getWXContext 获取 UnionID。</span><br><span class="line"></span><br><span class="line">6.小程序端调用云函数时，如果开发者帐号下存在同主体的公众号或移动应用，并且该用户已经</span><br><span class="line">授权登录过该公众号或移动应用，也可在云函数中通过 cloud.getWXContext 获取 UnionID。</span><br><span class="line"></span><br><span class="line">微信开放平台绑定小程序流程</span><br><span class="line">登录微信开放平台 — 管理中心 — 小程序 — 绑定小程序</span><br></pre></td></tr></table></figure>
+<h4 id="关于模版消息关于-formid-获取"><a href="#关于模版消息关于-formid-获取" class="headerlink" title="关于模版消息关于 formid  获取"></a>关于模版消息关于 formid  获取</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 支付</span><br><span class="line">当用户在小程序内完成过支付行为，可允许开发者向用户在7天内推送有限</span><br><span class="line">条数的模板消息（1次支付可下发3条，多次支付下发条数独立，互相不影</span><br><span class="line">响）</span><br><span class="line"></span><br><span class="line">2. 提交表单</span><br><span class="line"></span><br><span class="line">当用户在小程序内发生过提交表单行为且该表单声明为要发模板消息的，开</span><br><span class="line">发者需要向用户提供服务时，可允许开发者向用户在7天内推送有限条数的</span><br><span class="line">模板消息（1次提交表单可下发1条，多次提交下发条数独立，相互不影响）</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/01/wx_mini_count/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java_string" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -912,288 +1064,6 @@
 
 
   
-    <article id="post-rxjava_boolean" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/15/rxjava_boolean/">RxJava 条件操作符和布尔操作符</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/15/rxjava_boolean/" class="archive-article-date">
-  	<time datetime="2019-05-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="一、条件操作符"><a href="#一、条件操作符" class="headerlink" title="一、条件操作符"></a>一、条件操作符</h4><ul>
-<li>amb() 给定多个 Observable,只让第一个发射数据的 Observable 发射全部数据。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    Observable.ambArray(</span><br><span class="line">                Observable.just(1,2,3,4,5).delay(1000, TimeUnit.SECONDS),</span><br><span class="line">                Observable.just(6,7)</span><br><span class="line">        ).subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                System.out.println(integer);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">执行结果</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td></tr></table></figure>
-<ul>
-<li>defaultEmpty() 发射来自原始 Observable 的数据，如果 原始 Observable 没有发射数据，则发射一个默认数据。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   Observable.empty()</span><br><span class="line">                .defaultIfEmpty(8)</span><br><span class="line">                .subscribe(new Consumer&lt;Object&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Object o) throws Exception &#123;</span><br><span class="line">                        System.out.println(o);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">执行结果</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
-<ul>
-<li>skipUntil() 丢弃原始 Observable 发射的数据，直到第二个 Observable 发射一个数据，然后发射原始 Observable 的剩余的数据。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Observable.intervalRange(1,9,0,1,TimeUnit.MILLISECONDS)</span><br><span class="line">                    .skipUntil(Observable.timer(4,TimeUnit.MILLISECONDS))</span><br><span class="line">                    .subscribe(new Consumer&lt;Long&gt;() &#123;</span><br><span class="line">                        @Override</span><br><span class="line">                        public void accept(Long aLong) throws Exception &#123;</span><br><span class="line">                            System.out.println(String.valueOf(aLong));</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">  try &#123;</span><br><span class="line">            Thread.sleep(1000);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">执行结果</span><br><span class="line"></span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
-<ul>
-<li>skipWhile() 丢弃原始的 Observable 发射的数据，直到一个特定的条件为假，然后发射原始 Observable 剩余数据。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(1,2,3,4,5)</span><br><span class="line">                 .skipWhile(new Predicate&lt;Integer&gt;() &#123;</span><br><span class="line">                     @Override</span><br><span class="line">                     public boolean test(Integer integer) throws Exception &#123;</span><br><span class="line">                         return integer &lt;= 2;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;)</span><br><span class="line">                 .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">             @Override</span><br><span class="line">             public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                 System.out.println(integer);</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>takeUntil() 发射来自原始 Observable 的数据，直到第二个 Observable 发射了一个数据或一个通知。</p>
-</li>
-<li><p>takeWhile() and takeWhileWithIndex() 发射原始数据 Observable 的数据，直到一个特定的条件为真，然后跳过剩余的数据。</p>
-</li>
-</ul>
-<h4 id="二、布尔操作符"><a href="#二、布尔操作符" class="headerlink" title="二、布尔操作符"></a>二、布尔操作符</h4><p>all() 判断是否所有的数据项都满足某个条件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">   Observable.just(1,2,3,4,5)</span><br><span class="line">                .all(new Predicate&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public boolean test(Integer integer) throws Exception &#123;</span><br><span class="line">                        return integer &lt; 10;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;).subscribe(new Consumer&lt;Boolean&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void accept(Boolean aBoolean) throws Exception &#123;</span><br><span class="line">                System.out.println(aBoolean);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">执行结果</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
-<p>contains() 判断 Observable 是否会发射一个指定的值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> Observable.just(1,2,3,4,5)</span><br><span class="line">                .contains(3)</span><br><span class="line">                .subscribe(new Consumer&lt;Boolean&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void accept(Boolean aBoolean) throws Exception &#123;</span><br><span class="line">                System.out.println(aBoolean);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">执行结果</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
-<p>exists() and isEmpty() 判断 Observable 是否发射了一个值。</p>
-<p>sequenceEqual() 判断两个 Observable 发射的序列是否相等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">        Observable.sequenceEqual(</span><br><span class="line">                Observable.just(1,2),</span><br><span class="line">                Observable.just(1,2)</span><br><span class="line">        ).subscribe(new Consumer&lt;Boolean&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void accept(Boolean aBoolean) throws Exception &#123;</span><br><span class="line">                System.out.println(aBoolean);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">执行结果</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/15/rxjava_boolean/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-rxjava_flat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/10/rxjava_flat/">RxJava 变换操作符和过滤操作符</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/10/rxjava_flat/" class="archive-article-date">
-  	<time datetime="2019-05-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>map() 对序列的每一项都用一个函数来变换 Observable 发射的数据序列。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(&quot;HELLO&quot;)</span><br><span class="line">               .map(new Function&lt;String, String&gt;() &#123;</span><br><span class="line">                   @Override</span><br><span class="line">                   public String apply(String s) throws Exception &#123;</span><br><span class="line">                       return s.toLowerCase();</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;)</span><br><span class="line">               .map(new Function&lt;String, String&gt;() &#123;</span><br><span class="line">                   @Override</span><br><span class="line">                   public String apply(String s) throws Exception &#123;</span><br><span class="line">                       return s+ &quot; world&quot;;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;).subscribe(new Consumer&lt;String&gt;() &#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void accept(String s) throws Exception &#123;</span><br><span class="line">               System.out.println(s);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
-<p>执行结果</p>
-<blockquote>
-<p>hello world</p>
-</blockquote>
-<ul>
-<li>flatMap()、concatMap() 和 flatMapIterable() 将 Observable 发射的数据集合变换为 Observable 集合 ，然后将这些<br>Observable 发射的数据平坦化地放进去一个单独的 Observable中。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">User user = new User();</span><br><span class="line">    user.username = &quot;123&quot;;</span><br><span class="line">    user.address = new ArrayList&lt;&gt;();</span><br><span class="line">    User.Address address  = new User.Address();</span><br><span class="line">    address.street = &quot;金钟路&quot;;</span><br><span class="line">    address.city = &quot;456&quot;;</span><br><span class="line">    user.address.add(address);</span><br><span class="line"></span><br><span class="line">    User.Address address1  = new User.Address();</span><br><span class="line">    address1.street = &quot;金钟路1&quot;;</span><br><span class="line">    address1.city = &quot;789&quot;;</span><br><span class="line">    user.address.add(address1);</span><br><span class="line">    </span><br><span class="line">    Observable.just(user)</span><br><span class="line">            .flatMap(new Function&lt;User, ObservableSource&lt;User.Address&gt;&gt;() &#123;</span><br><span class="line"></span><br><span class="line">                @Override</span><br><span class="line">                public ObservableSource&lt;User.Address&gt; apply(User user) throws Exception &#123;</span><br><span class="line">                    return Observable.fromIterable(user.address);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).subscribe(new Consumer&lt;User.Address&gt;() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void accept(User.Address address) throws Exception &#123;</span><br><span class="line">                System.out.println(address.street);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>金钟路</p>
-</blockquote>
-<blockquote>
-<p>金钟路1</p>
-</blockquote>
-<ul>
-<li><p>switchMap() 将 Observable 发射的数据集合变换为 Observable 集合，然后只发射这些 Observables 最近发射过的数据。</p>
-</li>
-<li><p>scan() 对 Observable 发射的每一项数据应用一个函数，然后按顺序依次发射每一个值。</p>
-</li>
-<li><p>groupBy() 将 Observable 拆分为 Observable 集合，将原始的 Observable 发射的数据按照 key 分组，每一个 Observable 发射过一组不同的数据。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  Observable.range(1,8)</span><br><span class="line">                .groupBy(new Function&lt;Integer, String&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public String apply(Integer integer) throws Exception &#123;</span><br><span class="line">                        return (integer % 2 == 0) ? &quot;偶数组&quot;: &quot;奇数组&quot;;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;).subscribe(new Consumer&lt;GroupedObservable&lt;String, Integer&gt;&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void accept(final GroupedObservable&lt;String, Integer&gt; stringIntegerGroupedObservable) throws Exception &#123;</span><br><span class="line">//                System.out.println(stringIntegerGroupedObservable.getKey());</span><br><span class="line"></span><br><span class="line">                if(stringIntegerGroupedObservable.getKey().equalsIgnoreCase(&quot;奇数组&quot;))&#123;</span><br><span class="line">                    stringIntegerGroupedObservable.subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                        @Override</span><br><span class="line">                        public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                            System.out.println(stringIntegerGroupedObservable.getKey() + &quot;member&quot;+integer);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>buffer() 定期从 Observable 收集数据到一个集合，然后把这些数据打包发射，而不是一次发射一个。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">   Observable.range(1,10)</span><br><span class="line">                .buffer(2)</span><br><span class="line">                .subscribe(new Consumer&lt;List&lt;Integer&gt;&gt;() &#123;</span><br><span class="line">                               @Override</span><br><span class="line">                               public void accept(List&lt;Integer&gt; integers) throws Exception &#123;</span><br><span class="line">                                    System.out.println(integers);</span><br><span class="line">                               &#125;</span><br><span class="line">                           &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                               @Override</span><br><span class="line">                               public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                                   System.out.println(&quot;onError&quot;);</span><br><span class="line">                               &#125;</span><br><span class="line">                           &#125;,</span><br><span class="line">                            new Action() &#123;</span><br><span class="line">                                @Override</span><br><span class="line">                                public void run() throws Exception &#123;</span><br><span class="line">                                    System.out.println(&quot;onComplete&quot;);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                );</span><br><span class="line"> </span><br><span class="line">执行结果</span><br><span class="line"></span><br><span class="line">[1, 2]</span><br><span class="line">[3, 4]</span><br><span class="line">[5, 6]</span><br><span class="line">[7, 8]</span><br><span class="line">[9, 10]</span><br><span class="line">onComplete</span><br></pre></td></tr></table></figure>
-<ul>
-<li>window() 定期将来自 Observable 的数据拆分成一些 Observable 窗口，然后发射这些窗口，而不是每次发射一项。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">Observable.range(1,10)</span><br><span class="line">                .window(2)</span><br><span class="line">                .subscribe(new Consumer&lt;Observable&lt;Integer&gt;&gt;() &#123;</span><br><span class="line">                               @Override</span><br><span class="line">                               public void accept(Observable&lt;Integer&gt; integerObservable) throws Exception &#123;</span><br><span class="line">                                   System.out.println(&quot;onNext:&quot;);</span><br><span class="line">                                   integerObservable.subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                                       @Override</span><br><span class="line">                                       public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                                           System.out.println(integer);</span><br><span class="line">                                       &#125;</span><br><span class="line">                                   &#125;);</span><br><span class="line">                               &#125;</span><br><span class="line">                           &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                               @Override</span><br><span class="line">                               public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                                   System.out.println(&quot;onError&quot;);</span><br><span class="line">                               &#125;</span><br><span class="line">                           &#125;,</span><br><span class="line">                        new Action() &#123;</span><br><span class="line">                            @Override</span><br><span class="line">                            public void run() throws Exception &#123;</span><br><span class="line">                                System.out.println(&quot;onComplete&quot;);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                );</span><br><span class="line">                </span><br><span class="line">执行结果：</span><br><span class="line"></span><br><span class="line">onNext:</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">onNext:</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">onNext:</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">onNext:</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">onNext:</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">onComplete</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>cast() 在发射之前强制将 Observable 发射的所有数据转换为指定类型。</p>
-</li>
-<li><p>lastorDefault() 只发射最后一项数据，如果 Observable 为空就发射默认值。</p>
-</li>
-<li><p>takeLastBuffer() 将最后的 N 项数据当作单个数据发射。</p>
-</li>
-<li><p>skip() 跳过开始的 N 项数据。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">        Observable.range(0,10)</span><br><span class="line">                .skip(3)</span><br><span class="line">                .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot; + integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Action() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                </span><br><span class="line">执行结果：</span><br><span class="line">onNext:3</span><br><span class="line">onNext:4</span><br><span class="line">onNext:5</span><br><span class="line">onNext:6</span><br><span class="line">onNext:7</span><br><span class="line">onNext:8</span><br><span class="line">onNext:9</span><br><span class="line">onOnComplete</span><br></pre></td></tr></table></figure>
-<ul>
-<li>skipLast() 跳过最后的 N 项数据。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">        Observable.range(0,10)</span><br><span class="line">                .skipLast(3)</span><br><span class="line">                .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot; + integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Action() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">执行结果：</span><br><span class="line">onNext:0</span><br><span class="line">onNext:1</span><br><span class="line">onNext:2</span><br><span class="line">onNext:3</span><br><span class="line">onNext:4</span><br><span class="line">onNext:5</span><br><span class="line">onNext:6</span><br><span class="line">onOnComplete</span><br></pre></td></tr></table></figure>
-<ul>
-<li>take() 只发射开始的 N项数据。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">Observable.range(1,10)</span><br><span class="line">                .take(5)</span><br><span class="line">                .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot; + integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Action() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">执行结果</span><br><span class="line"></span><br><span class="line">onNext:1</span><br><span class="line">onNext:2</span><br><span class="line">onNext:3</span><br><span class="line">onNext:4</span><br><span class="line">onNext:5</span><br><span class="line">onOnComplete</span><br><span class="line"></span><br><span class="line">重载方法 接受一个时长而不是数量参数</span><br><span class="line"></span><br><span class="line">        Observable.intervalRange(0,10,1,1,TimeUnit.SECONDS)</span><br><span class="line">                .take(3, TimeUnit.SECONDS)</span><br><span class="line">                .subscribe(new Consumer&lt;Long&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Long integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot; + integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Action() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            Thread.sleep(10000);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">执行结果</span><br><span class="line">onNext:0</span><br><span class="line">onNext:1</span><br><span class="line">onNext:2</span><br><span class="line">onOnComplete</span><br></pre></td></tr></table></figure>
-<ul>
-<li>takeLast() 只发射最后的 N 项数据。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">Observable.range(1,10)</span><br><span class="line">                .takeLast(5)</span><br><span class="line">                .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot; + integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Action() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">执行结果</span><br><span class="line">onNext:6</span><br><span class="line">onNext:7</span><br><span class="line">onNext:8</span><br><span class="line">onNext:9</span><br><span class="line">onNext:10</span><br><span class="line">onOnComplete</span><br><span class="line"></span><br><span class="line">   Observable.intervalRange(0,10,1,1,TimeUnit.SECONDS)</span><br><span class="line">                .takeLast(3, TimeUnit.SECONDS)</span><br><span class="line">                .subscribe(new Consumer&lt;Long&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Long integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot; + integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Action() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            Thread.sleep(10000);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">onNext:7</span><br><span class="line">onNext:8</span><br><span class="line">onNext:9</span><br><span class="line">onOnComplete</span><br></pre></td></tr></table></figure>
-<ul>
-<li>first() and takeFirst() 只发恶化第一项数据，或者满足某种条件的第一项数据。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> Observable.range(1,10)</span><br><span class="line">                .first(1)</span><br><span class="line">                .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot;+integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                </span><br><span class="line">执行结果</span><br><span class="line"></span><br><span class="line">onNext:1</span><br></pre></td></tr></table></figure>
-<ul>
-<li>last() 只发射最后一项数据。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  Observable.range(1,10)</span><br><span class="line">                .last(10)</span><br><span class="line">                .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot;+integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">执行结果</span><br><span class="line">onNext:10</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>firstOrDefault() 只发射第一项数据，如果 Observable 为空就发射默认数据。</p>
-</li>
-<li><p>elementAt() 发射第 N 项数据。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    Observable.range(0,10)</span><br><span class="line">                .elementAt(2)</span><br><span class="line">                .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot; + integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Action() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                </span><br><span class="line">执行结果</span><br><span class="line">onNext:2</span><br></pre></td></tr></table></figure>
-<ul>
-<li>ignoreElements() 丢弃所有的正常数据，只发射错误或完成通知。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Observable.range(0,10)</span><br><span class="line">                .ignoreElements()</span><br><span class="line">                .subscribe(</span><br><span class="line">                        new Action() &#123;</span><br><span class="line">                            @Override</span><br><span class="line">                            public void run() throws Exception &#123;</span><br><span class="line">                                System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;,</span><br><span class="line">                        new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                            @Override</span><br><span class="line">                            public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                                System.out.println(&quot;onError&quot; + throwable.getMessage());</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                );</span><br><span class="line">执行结果</span><br><span class="line">onOnComplete</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>elementAtOrDefault() 发射第 N 项数据，如果 Observable 数据少于 N 项，就发射默认值。</p>
-</li>
-<li><p>sample() or throuttleLast() 定期发射 Observable 最近的数据。</p>
-</li>
-<li><p>throuttleFirst() 定期发射 Observable 的第一项数据。</p>
-</li>
-<li><p>throuttleWithTimeout() or debounce();只有当  Observable 在指定时间段后还没有发射数据时，才发射一个数据。</p>
-</li>
-<li><p>timeout() 如果在一个指定的时间后还没发射数据，就发射一个异常。</p>
-</li>
-<li><p>distinct() 过滤掉重复的数据。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">  Observable.just(1,2,1,2,3,4,3,4,5)</span><br><span class="line">                .distinct()</span><br><span class="line">                .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot; + integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Action() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">执行结果</span><br><span class="line"></span><br><span class="line">onNext:1</span><br><span class="line">onNext:2</span><br><span class="line">onNext:3</span><br><span class="line">onNext:4</span><br><span class="line">onNext:5</span><br><span class="line">onOnComplete</span><br></pre></td></tr></table></figure>
-<ul>
-<li>distinctUntilChanged() 过滤掉连续重复的数据。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> Observable.just(1,2,1,2,3,4,4,5)</span><br><span class="line">                .distinctUntilChanged()</span><br><span class="line">                .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot; + integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Action() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">执行结果</span><br><span class="line">onNext:1</span><br><span class="line">onNext:2</span><br><span class="line">onNext:1</span><br><span class="line">onNext:2</span><br><span class="line">onNext:3</span><br><span class="line">onNext:4</span><br><span class="line">onNext:5</span><br><span class="line">onOnComplete</span><br></pre></td></tr></table></figure>
-<ul>
-<li>filter() 过滤数据。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"> Observable.just(20,1,30,3,40)</span><br><span class="line">                .filter(new Predicate&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public boolean test(Integer integer) throws Exception &#123;</span><br><span class="line">                        return integer &gt; 10;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot; + integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Action() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">执行结果</span><br><span class="line">onNext:20</span><br><span class="line">onNext:30</span><br><span class="line">onNext:40</span><br><span class="line">onOnComplete</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>ofType() 只发射指定类型的数据。</p>
-</li>
-<li><p>debounce 仅在过了一段指定的时间还没发射的数据时才发射一个数据。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">Observable.create(new ObservableOnSubscribe&lt;Integer&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void subscribe(ObservableEmitter&lt;Integer&gt; emitter) throws Exception &#123;</span><br><span class="line">                if (emitter.isDisposed()) return;</span><br><span class="line">                try &#123;</span><br><span class="line">                    for (int i = 1; i &lt;= 10; i++) &#123;</span><br><span class="line">                        emitter.onNext(i); // 发射数据</span><br><span class="line">                        Thread.sleep(i * 100);</span><br><span class="line">                    &#125;</span><br><span class="line">                    emitter.onComplete();</span><br><span class="line">                &#125;catch (Exception e)&#123;</span><br><span class="line">                    emitter.onError(e);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).debounce(500,TimeUnit.MILLISECONDS)</span><br><span class="line">                .subscribe(new Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Integer integer) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onNext:&quot; + integer);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onError&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, new Action() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() throws Exception &#123;</span><br><span class="line">                        System.out.println(&quot;onOnComplete&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            Thread.sleep(10000);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">执行结果</span><br><span class="line">onNext:6</span><br><span class="line">onNext:7</span><br><span class="line">onNext:8</span><br><span class="line">onNext:9</span><br><span class="line">onNext:10</span><br><span class="line">onOnComplete</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/10/rxjava_flat/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1208,7 +1078,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Torrent
+    		&copy; 2021 Torrent
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1287,19 +1157,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Tools</a>
+                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+                <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1319,23 +1185,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">plugins</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Butter Knife</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Bitmap</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Drawable</a>
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">plugins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1360,6 +1218,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RxJava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Butter Knife</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Drawable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1423,11 +1293,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1439,11 +1309,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">aboutme</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color3">aboutme</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1455,6 +1325,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Plugins</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">dev-tools</a>
               </li>
              
@@ -1463,11 +1337,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Plugins</a>
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
+                <a href="javascript:void(0)" class="js-tag color3">MIUI BL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1480,10 +1358,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
             
             <div class="clearfix"></div>
